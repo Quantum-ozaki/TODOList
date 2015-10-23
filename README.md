@@ -1,5 +1,5 @@
 ﻿# TODOList
 
-SDFで作成したTODOリストアプリを拡張して、家計簿の機能をつけたもの
+SDFで作成したTODOリストアプリを拡張して、家計簿の機能をつけたものcocoa
 
 jijiijij
