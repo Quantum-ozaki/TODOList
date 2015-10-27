@@ -32,11 +32,11 @@
             this.textBoxS2 = new System.Windows.Forms.TextBox();
             this.textBoxS = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // comboBoxS
             // 
-            this.comboBoxS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxS.FormattingEnabled = true;
             this.comboBoxS.Location = new System.Drawing.Point(12, 16);
             this.comboBoxS.Name = "comboBoxS";
@@ -67,11 +67,22 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(116, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "label1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(179, 130);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.comboBoxS);
             this.Controls.Add(this.textBoxS2);
@@ -90,5 +101,10 @@
         private System.Windows.Forms.TextBox textBoxS2;
         private System.Windows.Forms.TextBox textBoxS;
         private System.Windows.Forms.Button button5;
+        internal string important;
+        private System.Windows.Forms.Label label1;
+
+        public int ID { get; internal set; }
+        public int Dated { get; internal set; }
     }
 }
