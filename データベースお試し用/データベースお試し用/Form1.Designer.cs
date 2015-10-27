@@ -54,7 +54,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,6 +80,7 @@
             this.listView1.Size = new System.Drawing.Size(470, 193);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // button2
             // 
@@ -187,7 +191,6 @@
             // 
             // comboBox2
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(312, 296);
             this.comboBox2.Name = "comboBox2";
@@ -215,10 +218,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.Font = new System.Drawing.Font("メイリオ", 16F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(7, 41);
+            this.label7.Location = new System.Drawing.Point(15, 36);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 36);
+            this.label7.Size = new System.Drawing.Size(155, 36);
             this.label7.TabIndex = 18;
             this.label7.Text = "TODOリスト";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -274,9 +277,9 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(21, 15);
+            this.button6.Location = new System.Drawing.Point(511, 103);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(75, 71);
             this.button6.TabIndex = 25;
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
@@ -284,30 +287,59 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(417, 241);
+            this.button7.Location = new System.Drawing.Point(511, 201);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(73, 50);
+            this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 26;
             this.button7.Text = "修正";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button8
+            // label10
             // 
-            this.button8.Location = new System.Drawing.Point(209, 249);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(73, 50);
-            this.button8.TabIndex = 27;
-            this.button8.Text = "修正";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(533, 264);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 12);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "label10";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(533, 285);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 12);
+            this.label11.TabIndex = 28;
+            this.label11.Text = "label11";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(533, 305);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 12);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "label12";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(533, 329);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(41, 12);
+            this.label13.TabIndex = 30;
+            this.label13.Text = "label13";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 385);
-            this.Controls.Add(this.button8);
+            this.ClientSize = new System.Drawing.Size(608, 385);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.pictureBox1);
@@ -368,7 +400,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
 
