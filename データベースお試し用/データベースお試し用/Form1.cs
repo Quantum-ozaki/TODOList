@@ -77,7 +77,7 @@ namespace データベースお試し用
 
             // セレクト文出す
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT ID,important,Content,Remarks,Dated FROM todolist");
+            sql.AppendLine("SELECT * FROM content");
 
 
 
@@ -89,21 +89,21 @@ namespace データベースお試し用
             while (reader.Read())
             {
 
-                string ID = reader.GetString("ID");
-                string important = reader.GetString("important");
-                string Content = reader.GetString("Content");
-                string Remarks = reader.GetString("Remarks");
-                string Dated = reader.GetString("Dated");
+                string ID = reader.GetString("id");
+                string important = reader.GetString("importance");
+                string Content = reader.GetString("content");
+                string Remarks = reader.GetString("remarks");
+                DateTime Dated = reader.GetDateTime("date");
+                string date = Dated.ToString("mm/dd (ddd)");
 
                 ListViewItem itemx1 = new ListViewItem();
                 itemx1.Text = ID;         //重要度
                 itemx1.SubItems.Add(important);         //重要度
                 itemx1.SubItems.Add(Content);  //内容
                 itemx1.SubItems.Add(Remarks);  //備考
-                itemx1.SubItems.Add(Dated);  //日付
+                itemx1.SubItems.Add(date);  //日付
 
                 listView1.Items.Add(itemx1);
-
             }
 
             //最後にとじる
@@ -145,7 +145,7 @@ namespace データベースお試し用
             {
                 // INSERT文出す
                 StringBuilder sql = new StringBuilder();
-            sql.AppendLine("INSERT INTO todolist(important, Content, Remarks, Dated) VALUES('" + strcomboBox1 + "','" + strBox1 + "','" + strBox2 + "','" + strTime + "')");
+            sql.AppendLine("INSERT INTO content(id, importance, content, category, price, date, remarks) VALUES('" + strcomboBox1 + "','" + strBox1 + "','" + strBox2 + "','" + strTime + "')");
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -266,7 +266,7 @@ namespace データベースお試し用
                     {
                         // UPDATE文出す
                         StringBuilder sql = new StringBuilder();
-                        sql.AppendLine("UPDATE todolist SET important = '" + setiImportant + "' , Content = '" + setiContent + "' , Remarks = '" + setiRemarks + "' WHERE ID = '" + msg + "'");
+                        sql.AppendLine("UPDATE content SET importance = '" + setiImportant + "' , content = '" + setiContent + "' , remarks = '" + setiRemarks + "' WHERE id = '" + msg + "'");
 
                         // よみこむやつ
                         MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -444,11 +444,6 @@ namespace データベースお試し用
         {
 
         }
-    }
-
-    class Correction
-    {
-
     }
 
 }
