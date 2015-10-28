@@ -29,7 +29,7 @@ namespace データベースお試し用
             get;
             set;
         }
-        public string Dated
+        public DateTime Dated
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace データベースお試し用
         /// <param name="Remarks"></param>
         /// <param name="Dated"></param>
         /// 
-        public Correction(int ID, string Important, string Content, string Remarks, string Dated)
+        public Correction(int ID, string Important, string Content, string Remarks, DateTime Dated)
         {
             this.ID = ID;
             this.Important = Important;
