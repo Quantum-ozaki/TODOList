@@ -368,6 +368,7 @@ namespace データベースお試し用
                 string dated = reader.GetString("date");
 
                 ListViewItem itemx1 = new ListViewItem();
+                itemx1.Name = id;
                 itemx1.Text = id;         //重要度
                 itemx1.SubItems.Add(important);         //重要度
                 itemx1.SubItems.Add(content);  //内容
