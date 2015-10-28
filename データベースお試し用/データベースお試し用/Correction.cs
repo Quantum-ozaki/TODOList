@@ -12,7 +12,7 @@ namespace データベースお試し用
         {
             get;
             set;
-            //ID, importance, Content, Remarks, Dated
+            //id, importance, content, Remarks, dated
         }
         public string importance
         {
@@ -29,7 +29,21 @@ namespace データベースお試し用
             get;
             set;
         }
-        public string date
+
+        public string category
+        {
+            get;
+            set;
+        }
+
+        public string price
+        {
+            get;
+            set;
+        }
+
+        public DateTime date
+
         {
             get;
             set;
@@ -46,12 +60,24 @@ namespace データベースお試し用
         /// <summary>
         /// 引数ありコンストラクタ
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="id"></param>
         /// <param name="importance"></param>
-        /// <param name="Content"></param>
+        /// <param name="content"></param>
         /// <param name="Remarks"></param>
-        /// <param name="Dated"></param>
+        /// <param name="date"></param>
         /// 
+
+        public Correction(int id, string importance, string content, string remarks, DateTime date)
+        {
+            this.id = id;
+            this.importance = importance;
+            this.content = content;
+            this.remarks = remarks;
+            this.date = date;
+
+
+        }
+
 
 
 

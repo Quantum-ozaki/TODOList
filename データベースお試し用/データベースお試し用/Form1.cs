@@ -117,23 +117,29 @@ namespace データベースお試し用
 
             
                 string id = reader.GetString("id");
+
                 string importance = reader.GetString("importance");
                 string content = reader.GetString("content");
-                string category = reader.GetString("category");
-                string price = reader.GetString("price");
-                DateTime date = reader.GetDateTime("date");
                 string remarks = reader.GetString("remarks");
-
-                string strdate = date.ToString("MM/dd (ddd)");
+                DateTime date = reader.GetDateTime("date");
+                string strdate = date.ToString("yyyy/MM/dd (ddd)");
 
                 ListViewItem itemx1 = new ListViewItem();
-                itemx1.Text = id;
-                itemx1.SubItems.Add(importance);
-                itemx1.SubItems.Add(content);
-                itemx1.SubItems.Add(category);
-                itemx1.SubItems.Add(price);
-                itemx1.SubItems.Add(strdate);
-                itemx1.SubItems.Add(remarks);
+                itemx1.Name = id;
+                itemx1.Text = id;         //重要度
+                itemx1.SubItems.Add(importance);         //重要度
+                itemx1.SubItems.Add(content);  //内容
+                itemx1.SubItems.Add(remarks);  //備考
+                itemx1.SubItems.Add(strdate);  //日付
+
+                //ListViewItem itemx1 = new ListViewItem();
+                //itemx1.Text = id;
+                //itemx1.SubItems.Add(importance);
+                //itemx1.SubItems.Add(content);
+                //itemx1.SubItems.Add(category);
+                //itemx1.SubItems.Add(price);
+                //itemx1.SubItems.Add(strdate);
+                //itemx1.SubItems.Add(remarks);
 
                 
                 listView1.Items.Add(itemx1);
@@ -167,7 +173,7 @@ namespace データベースお試し用
             string strBox1 = textBox1.Text;
             string strBox2 = textBox2.Text;
             DateTime nowtime = DateTime.Now;
-            string strTime = nowtime.ToString("MM/dd (ddd)");
+            string strTime = nowtime.ToString("yyyy/MM/dd (ddd)");
 
             if (comboBox1.Text == "" || textBox1.Text == "")
             {
@@ -226,7 +232,7 @@ namespace データベースお試し用
 
                 // DELETE文出す
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("DELETE FROM todolist WHERE id = '" + msg + "'");
+                sql.AppendLine("DELETE FROM content WHERE id = '" + msg + "'");
 
                 // よみこむやつ
                 MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -297,9 +303,9 @@ namespace データベースお試し用
 
                     else if (comboBox2.Text != "" || textBox4.Text != "")
                     {
-                        // UPDATE文出す
+                        // UPdate文出す
                         StringBuilder sql = new StringBuilder();
-                        sql.AppendLine("UPDATE content SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+                        sql.AppendLine("UPdate content SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
 
                         // よみこむやつ
                         MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -362,7 +368,9 @@ namespace データベースお試し用
 
             // SELECT文出す
             StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT id, importance, content, remarks, date  FROM todolist where importance LIKE '" + strimportance + "'");
+
+                sql.AppendLine("SELECT id, importance, content, remarks, date  FROM content where importance LIKE '" + strimportance + "'");
+
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -373,14 +381,17 @@ namespace データベースお試し用
 
 
                 string id = reader.GetString("id");
+
                 string importance = reader.GetString("importance");
+
                 string content = reader.GetString("content");
                 string category = reader.GetString("category");
                 string price = reader.GetString("price");
                 DateTime date = reader.GetDateTime("date");
                 string remarks = reader.GetString("remarks");
 
-                string strdate = date.ToString("MM/dd (ddd)");
+                string strdate = reader.GetString("date");
+
 
                 ListViewItem itemx1 = new ListViewItem();
 
@@ -414,18 +425,20 @@ namespace データベースお試し用
             Correction cn = new Correction();
 
             //----2.値を詰め込む
+
             //cn.id = this.savedidList[this.listView1.CheckedItems[0].Index];
             cn.id = int.Parse(this.listView1.CheckedItems[0].SubItems[0].Text);
             cn.importance = this.listView1.CheckedItems[0].SubItems[1].Text;
             cn.content = this.listView1.CheckedItems[0].SubItems[2].Text;
             cn.remarks = this.listView1.CheckedItems[0].SubItems[3].Text;
-            //cn.date = int.Parse(this.listView1.CheckedItems[0].SubItems[3].Text);
+            cn.date = DateTime.Parse(this.listView1.CheckedItems[0].SubItems[4].Text);
+
 
             //MessageBox.Show(cn.importance);
 
             //----3.詰め込んだ物を渡す
 
-            Form2 main = new Form2(cn);
+            Form2 main = new Form2(cn, this);
 
             //----4.渡した状態で画面起動
             main.ShowDialog(this);
@@ -471,9 +484,11 @@ namespace データベースお試し用
                     string setiremarks = label13.Text;
 
 
-                    // UPDATE文出す
+                    // UPdate文出す
                     StringBuilder sql = new StringBuilder();
-                    sql.AppendLine("UPDATE todolist SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
+                    sql.AppendLine("UPdate content SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
 
                     // よみこむやつ
                     MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -530,7 +545,9 @@ namespace データベースお試し用
 
                 // SELECT文出す
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("SELECT importance FROM todolist WHERE id LIKE '" + msg + "'");
+
+                sql.AppendLine("SELECT importance FROM content WHERE id LIKE '" + msg + "'");
+
 
                 // よみこむやつ
                 MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -545,7 +562,9 @@ namespace データベースお試し用
                 while (reader.Read())
             {
 
+
                 string importance = reader.GetString("importance");
+
    
 
                 ListViewItem itemx1 = new ListViewItem();
@@ -641,9 +660,10 @@ namespace データベースお試し用
 
                     else if (comboBox2.Text != "" || textBox4.Text != "")
                     {
-                        // UPDATE文出す
+                        // UPdate文出す
                         StringBuilder sql = new StringBuilder();
-                        sql.AppendLine("UPDATE todolist SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
+                        sql.AppendLine("UPdate content SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
 
                         // よみこむやつ
                         MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -699,9 +719,10 @@ namespace データベースお試し用
                     string setiremarks = label13.Text;
 
      
-                        // UPDATE文出す
+                        // UPdate文出す
                         StringBuilder sql = new StringBuilder();
-                        sql.AppendLine("UPDATE todolist SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
+                        sql.AppendLine("UPdate content SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
 
                         // よみこむやつ
                         MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -746,9 +767,11 @@ namespace データベースお試し用
                 string setiremarks = label13.Text;
 
 
-                // UPDATE文出す
+                // UPdate文出す
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine("UPDATE todolist SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
+                sql.AppendLine("UPdate content SET importance = '" + setiimportance + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
 
                 // よみこむやつ
                 MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -763,21 +786,46 @@ namespace データベースお試し用
             button1_Click(sender, e);
         }
 
-        private void label15_Click(object sender, EventArgs e)
+
+        public void SetcontentItems(Correction correction)
         {
+            string id_string = correction.id.ToString();
+            var target_item = this.listView1.Items.Find(id_string, false);
+            target_item[0].SubItems[0].Text = correction.importance;
+            target_item[0].SubItems[1].Text = correction.content;
+            target_item[0].SubItems[2].Text = correction.remarks;
+            target_item[0].SubItems[3].Text = correction.date.ToString("yyyy/MM/dd (ddd)");
+
+            string sql = string.Format("UPdate content SET importance = '{0}', content = '{1}', remarks = '{2}', date = '{3}' WHERE id = '{4}'",
+                correction.importance, correction.content, correction.remarks, correction.date.ToString("yyyy-MM-dd hh:mm:ss"), correction.id);
+
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+
+                var cmd = new MySqlCommand(sql.ToString(), con);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
         private void button8_Click_3(object sender, EventArgs e)
         {
+            Form4 F4 = new Form4();
 
-        }
-
-        private void button8_Click_4(object sender, EventArgs e)
-        {
-            Form4 Accounting = new Form4();
-            Accounting.ShowDialog();
-            Accounting.Dispose();
+            //----4.渡した状態で画面起動
+            F4.ShowDialog();
+            F4.Dispose();
         }
     }
 

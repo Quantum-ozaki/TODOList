@@ -340,7 +340,7 @@
             this.button8.TabIndex = 32;
             this.button8.Text = "FORM4表示";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click_4);
+            this.button8.Click += new System.EventHandler(this.button8_Click_3);
             // 
             // Form1
             // 

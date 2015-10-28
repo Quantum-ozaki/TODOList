@@ -102,6 +102,7 @@ namespace データベースお試し用
                 string strdate = date.ToString("yyyy/MM/dd");
 
                 ListViewItem itemx1 = new ListViewItem();
+                itemx1.Name = id;
                 itemx1.Text = id;
                 itemx1.SubItems.Add(importance);
                 itemx1.SubItems.Add(content);
@@ -237,20 +238,77 @@ namespace データベースお試し用
         private void buttonChange_Click(object sender, EventArgs e)
         {
 
+
+            //----1.データを作る為にリストビューから値を取得
+
             Correction cn = new Correction();
+
+            //----2.値を詰め込む
+
+            //cn.id = this.savedidList[this.listView2.CheckedItems[0].Index];
             cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
-            cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
+           // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
             cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
-            cn.remarks = this.listView2.CheckedItems[0].SubItems[3].Text;
+            cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
+            cn.price = this.listView2.CheckedItems[0].SubItems[4].Text;
+            cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
+            cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
 
 
-            /*
-            comboBox1.Text = cn.category;
-            textBox1.Text = cn.content;
-            textBox2.Text = cn.price;
-            textBox3.Text = cn.remarks;
-            */
+            //MessageBox.Show(cn.importance);
+
+            //----3.詰め込んだ物を渡す
+
+            Form3 main = new Form3(cn, this);
+
+            //----4.渡した状態で画面起動
+            main.ShowDialog(this);
+            main.Dispose();
+            //this.dataLoad();
 
         }
+
+        public void SetcontentItems(Correction se)
+        {
+
+
+
+            string id_string = se.id.ToString();
+            var target_item = this.listView2.Items.Find(id_string, false);
+            
+
+            target_item[0].SubItems[0].Text = se.id.ToString();
+            target_item[0].SubItems[2].Text = se.content;
+            target_item[0].SubItems[3].Text = se.category;
+            target_item[0].SubItems[4].Text = se.price;
+            target_item[0].SubItems[5].Text = se.date.ToString("yyyy/MM/dd (ddd)");
+            target_item[0].SubItems[6].Text = se.remarks;
+          
+
+            string sql = string.Format("UPdate content SET content = '{0}', category = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
+              se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
+
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+
+                var cmd = new MySqlCommand(sql.ToString(), con);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+      
+
+        }
+
     }
 }

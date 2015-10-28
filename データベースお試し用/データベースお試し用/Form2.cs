@@ -21,6 +21,7 @@ namespace データベースお試し用
         /// データ保持用
         /// </summary>
         private Correction correction;
+        private Form1 form;
 
 
         public Form2()
@@ -45,8 +46,8 @@ namespace データベースお試し用
 
         public string importance { get; internal set; }
         public string content { get; internal set; }
-        public string category { get; internal set; }
-        public string price { get; internal set; }
+        public string Category { get; internal set; }
+        public string Price { get; internal set; }
         public string date { get; internal set; }
         public string remarks { get; internal set; }
 
@@ -54,8 +55,10 @@ namespace データベースお試し用
         /// 引数ありコンストラクタ
         /// </summary>
         /// <param name="cn"></param>
-        public Form2(Correction cn)
+        public Form2(Correction cn, Form1 form)
         {
+            this.form = form;
+
             InitializeComponent();
             this.correction = cn;
 
@@ -90,19 +93,23 @@ namespace データベースお試し用
             Correction se = new Correction();
 
             //----2.値を詰め込む
+
             string strid = se.id.ToString();
-            strid = this.label1.Text;
+            se.id = int.Parse(this.label1.Text);
             se.importance = this.comboBoxS.Text;
             se.content = this.textBoxS.Text;
             se.remarks = this.textBoxS2.Text;
+            se.date = this.correction.date;
+
+            form.SetcontentItems(se);
 
             //----3.詰め込んだ物を渡す
 
-            Form1 sub = new Form1(se);
+            //Form1 sub = new Form1(se);
 
             //----4.渡した状態で画面起動
-            sub.ShowDialog(this);
-            sub.Dispose();
+            //sub.ShowDialog(this);
+            //sub.Dispose();
 
 
             this.Close();
