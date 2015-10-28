@@ -775,6 +775,18 @@ namespace データベースお試し用
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void csv_btn_Click(object sender, EventArgs e)
+        {
+            using (CSVWriter writer = new CSVWriter(@"C:\Users\secure\Documents\test.csv"))
+            {
+                writer.WriteHeader("ID, importance, content," /*category, price, */+ "remarks, date");
+                foreach (var item in this.listView1.Items)
+                {
+                    writer.Write((ListViewItem)item);
+                }
+            }
+        }
     }
 
 }

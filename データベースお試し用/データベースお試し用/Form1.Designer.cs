@@ -58,6 +58,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
+            this.csv_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -331,11 +332,22 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
+            // csv_btn
+            // 
+            this.csv_btn.Location = new System.Drawing.Point(511, 13);
+            this.csv_btn.Name = "csv_btn";
+            this.csv_btn.Size = new System.Drawing.Size(75, 44);
+            this.csv_btn.TabIndex = 32;
+            this.csv_btn.Text = "CSV出力";
+            this.csv_btn.UseVisualStyleBackColor = true;
+            this.csv_btn.Click += new System.EventHandler(this.csv_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 385);
+            this.Controls.Add(this.csv_btn);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -404,6 +416,7 @@
         public System.Windows.Forms.Label label12;
         public System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button csv_btn;
     }
 }
 
