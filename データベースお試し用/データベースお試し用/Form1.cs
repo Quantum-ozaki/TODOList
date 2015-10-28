@@ -20,6 +20,7 @@ namespace データベースお試し用
 
         private List<int> savedidList = new List<int>();
 
+
         public Form1()
         {
             InitializeComponent();
@@ -49,17 +50,22 @@ namespace データベースお試し用
 
         }
 
+        
         public Form1(Correction se)
         {
             InitializeComponent();
             this.correction = se;
 
-            comboBox2.Text = se.Important;
-            textBox4.Text = se.Content;
-            textBox3.Text = se.Remarks;
+
+            string strID = se.ID.ToString();
+            label10.Text = strID;
+            label11.Text = se.Important;
+            label12.Text = se.Content;
+            label13.Text = se.Remarks;
 
 
         }
+       
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -383,6 +389,7 @@ namespace データベースお試し用
 
         private void button6_Click(object sender, EventArgs e)
         {
+
             //----1.データを作る為にリストビューから値を取得
 
             Correction cn = new Correction();
@@ -399,30 +406,79 @@ namespace データベースお試し用
 
             //----3.詰め込んだ物を渡す
 
-            Form2 f = new Form2(cn);
+            Form2 main = new Form2(cn);
 
             //----4.渡した状態で画面起動
-            f.ShowDialog(this);
-            f.Dispose();
+            main.ShowDialog(this);
+            main.Dispose();
             //this.dataLoad();
 
-            Correction se = new Correction();
 
-            string strID = se.ID.ToString();
-            label10.Text = strID;
-            label11.Text = se.Important;
-            label12.Text = se.Content;
-            label13.Text = se.Remarks;
+            using (Form2 sub = new Form2())
+            {
+                Correction se = new Correction();
+                // プロパティに値を設定して子フォームを開く
+
+                // 子フォームで設定されたプロパティから値を反映する
+                string strID = se.ID.ToString();
+                this.label10.Text = strID;
+                this.label11.Text = se.Important;
+                this.label12.Text = se.Content;
+                this.label13.Text = se.Remarks;
+
+                //オブジェクト指向パラダイム
+                MySqlConnection con = new MySqlConnection();
+                string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+                con.ConnectionString = conString;
+
+                try
+                {
+                    con.Open();
+                    //MessageBox.Show("接続成功");
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+
+                }
+
+                if (label10.Text != "")
+                {
 
 
-            //接続する
-          //  button4_Click(sender, e);
-            
+                    string msg = label10.Text;
+                    string setiImportant = label11.Text;
+                    string seticontent = label12.Text;
+                    string setiremarks = label13.Text;
 
 
-            //接続する
-          //  button1_Click(sender, e);
+                    // UPDATE文出す
+                    StringBuilder sql = new StringBuilder();
+                    sql.AppendLine("UPDATE todolist SET important = '" + setiImportant + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
 
+                    // よみこむやつ
+                    MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                    cmd.ExecuteNonQuery();
+
+
+                }
+                //最後にとじる
+                con.Close();
+
+                //接続する
+                button1_Click(sender, e);
+
+
+            }
+
+
+
+        }
+
+
+        private void dataLoad()
+        {
+            throw new NotImplementedException();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -492,10 +548,10 @@ namespace データベースお試し用
             con.Close();
         }
 
-        private void dataLoad()
-        {
-            throw new NotImplementedException();
-        }
+        //private void dataLoad()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
@@ -590,6 +646,102 @@ namespace データベースお試し用
             //接続する
             button1_Click(sender, e);
 
+        }
+
+        private void button8_Click_2(object sender, EventArgs e)
+        {
+
+            // Form2 form2 = new Form2();
+            //form2.Show();
+
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                //MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            if (label10.Text != "")
+            {
+              
+
+                    string msg = label10.Text;
+                    string setiImportant = label11.Text;
+                    string seticontent = label12.Text;
+                    string setiremarks = label13.Text;
+
+     
+                        // UPDATE文出す
+                        StringBuilder sql = new StringBuilder();
+                        sql.AppendLine("UPDATE todolist SET important = '" + setiImportant + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
+                        // よみこむやつ
+                        MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                        cmd.ExecuteNonQuery();
+
+
+            }
+            //最後にとじる
+            con.Close();
+
+            //接続する
+            button1_Click(sender, e);
+
+
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                //MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            if (label10.Text != "")
+            {
+
+
+                string msg = label10.Text;
+                string setiImportant = label11.Text;
+                string seticontent = label12.Text;
+                string setiremarks = label13.Text;
+
+
+                // UPDATE文出す
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine("UPDATE todolist SET important = '" + setiImportant + "' , content = '" + seticontent + "' , remarks = '" + setiremarks + "' WHERE id = '" + msg + "'");
+
+                // よみこむやつ
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                cmd.ExecuteNonQuery();
+
+
+            }
+            //最後にとじる
+            con.Close();
+
+            //接続する
+            button1_Click(sender, e);
         }
     }
 

@@ -20,3 +20,14 @@ C:\Users\kuri\TODOList\データベースお試し用\データベースお試�
 C:\Users\kuri\TODOList\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Form2.resources
 C:\Users\kuri\TODOList\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Properties.Resources.resources
 C:\Users\kuri\TODOList\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.csproj.GenerateResource.Cache
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.exe.config
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.exe
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.pdb
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.exe
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.pdb
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\bin\Debug\MySql.Data.dll
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.csprojResolveAssemblyReference.cache
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Form1.resources
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Form2.resources
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Properties.Resources.resources
+C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.csproj.GenerateResource.Cache

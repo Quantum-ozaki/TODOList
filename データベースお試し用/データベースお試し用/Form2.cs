@@ -25,10 +25,12 @@ namespace データベースお試し用
 
         public Form2()
         {
+            /*
             comboBoxS.Items.Add("Ａ");
             comboBoxS.Items.Add("Ｂ");
             comboBoxS.Items.Add("Ｃ");
             comboBoxS.Items.Add("Ｄ");
+            */
             InitializeComponent();
             /*
             string msg = itemx.Text;
@@ -38,6 +40,10 @@ namespace データベースお試し用
             textBoxS2.Text =;
             */
         }
+   
+        public string Important { get; internal set; }
+        public string Content { get; internal set; }
+        public string Remarks { get; internal set; }
 
         /// <summary>
         /// 引数ありコンストラクタ
@@ -57,9 +63,6 @@ namespace データベースお試し用
         }
 
 
-        public string Important { get; internal set; }
-        public string Content { get; internal set; }
-        public string Remarks { get; internal set; }
 
         private void test()
         {
@@ -72,33 +75,40 @@ namespace データベースお試し用
             int z = naibukazu / 2;
         }
 
+
+
         private void button5_Click(object sender, EventArgs e)
         {
+
             //----1.データを作る為にリストビューから値を取得
 
             Correction se = new Correction();
 
             //----2.値を詰め込む
-
-            
-            int iID = int.Parse(label1.Text);
-            se.ID = iID;
-            se.Important = comboBoxS.Text;
-            se.Content = textBoxS.Text;
-            se.Remarks = textBoxS2.Text;
-
-            //MessageBox.Show(cn.Important);
+            string strID = se.ID.ToString();
+            strID = this.label1.Text;
+            se.Important = this.comboBoxS.Text;
+            se.Content = this.textBoxS.Text;
+            se.Remarks = this.textBoxS2.Text;
 
             //----3.詰め込んだ物を渡す
-            Form1 f = new Form1(se);
-            f.ShowDialog(this);
-            f.Dispose();
+
+            Form1 sub = new Form1(se);
 
             //----4.渡した状態で画面起動
+            sub.ShowDialog(this);
+            sub.Dispose();
 
-            //this.ReturnValue = comboBoxS.Text;
+
             this.Close();
-           
+            //this.Dispose();
+            //this.dataLoad();
+
+        }
+
+        private void dataLoad()
+        {
+            throw new NotImplementedException();
         }
 
         private void label1_Click(object sender, EventArgs e)
