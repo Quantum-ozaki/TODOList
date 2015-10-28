@@ -1,4 +1,4 @@
-c:\users\kuri\documents\visual studio 2015\Projects\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.exe.config
+﻿c:\users\kuri\documents\visual studio 2015\Projects\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.exe.config
 c:\users\kuri\documents\visual studio 2015\Projects\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.exe
 c:\users\kuri\documents\visual studio 2015\Projects\データベースお試し用\データベースお試し用\bin\Debug\データベースお試し用.pdb
 c:\users\kuri\documents\visual studio 2015\Projects\データベースお試し用\データベースお試し用\bin\Debug\MySql.Data.dll
@@ -31,3 +31,4 @@ C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\デー�
 C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Form2.resources
 C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.Properties.Resources.resources
 C:\Users\kuri\Desktop\新しいフォルダー\新しいフォルダー\データベースお試し用\データベースお試し用\obj\Debug\データベースお試し用.csproj.GenerateResource.Cache
+
