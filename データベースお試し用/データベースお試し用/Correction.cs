@@ -8,28 +8,42 @@ namespace データベースお試し用
 {
     public class Correction
     {
-        public int ID
+        public int id
         {
             get;
             set;
-            //ID, important, Content, Remarks, Dated
+            //id, importance, content, Remarks, dated
         }
-        public string Important
-        {
-            get;
-            set;
-        }
-        public string Content
+        public string importance
         {
             get;
             set;
         }
-        public string Remarks
+        public string content
         {
             get;
             set;
         }
-        public DateTime Dated
+        public string remarks
+        {
+            get;
+            set;
+        }
+
+        public string category
+        {
+            get;
+            set;
+        }
+
+        public string price
+        {
+            get;
+            set;
+        }
+
+        public DateTime date
+
         {
             get;
             set;
@@ -46,22 +60,24 @@ namespace データベースお試し用
         /// <summary>
         /// 引数ありコンストラクタ
         /// </summary>
-        /// <param name="ID"></param>
-        /// <param name="Important"></param>
-        /// <param name="Content"></param>
+        /// <param name="id"></param>
+        /// <param name="importance"></param>
+        /// <param name="content"></param>
         /// <param name="Remarks"></param>
-        /// <param name="Dated"></param>
+        /// <param name="date"></param>
         /// 
-        public Correction(int ID, string Important, string Content, string Remarks, DateTime Dated)
+
+        public Correction(int id, string importance, string content, string remarks, DateTime date)
         {
-            this.ID = ID;
-            this.Important = Important;
-            this.Content = Content;
-            this.Remarks = Remarks;
-            this.Dated = Dated;
+            this.id = id;
+            this.importance = importance;
+            this.content = content;
+            this.remarks = remarks;
+            this.date = date;
 
 
         }
+
 
 
 

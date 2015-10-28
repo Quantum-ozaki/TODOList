@@ -41,10 +41,15 @@ namespace データベースお試し用
             textBoxS2.Text =;
             */
         }
-   
-        public string Important { get; internal set; }
-        public string Content { get; internal set; }
-        public string Remarks { get; internal set; }
+
+
+
+        public string importance { get; internal set; }
+        public string content { get; internal set; }
+        public string Category { get; internal set; }
+        public string Price { get; internal set; }
+        public string date { get; internal set; }
+        public string remarks { get; internal set; }
 
         /// <summary>
         /// 引数ありコンストラクタ
@@ -57,12 +62,12 @@ namespace データベースお試し用
             InitializeComponent();
             this.correction = cn;
 
-            string strID = cn.ID.ToString();
+            string strid = cn.id.ToString();
 
-            label1.Text = strID;
-            comboBoxS.Text = cn.Important;
-            textBoxS.Text = cn.Content;
-            textBoxS2.Text = cn.Remarks;
+            label1.Text = strid;
+            comboBoxS.Text = cn.importance;
+            textBoxS.Text = cn.content;
+            textBoxS2.Text = cn.remarks;
         }
 
 
@@ -88,14 +93,15 @@ namespace データベースお試し用
             Correction se = new Correction();
 
             //----2.値を詰め込む
-            string strID = se.ID.ToString();
-            se.ID = int.Parse(this.label1.Text);
-            se.Important = this.comboBoxS.Text;
-            se.Content = this.textBoxS.Text;
-            se.Remarks = this.textBoxS2.Text;
-            se.Dated = this.correction.Dated;
 
-            form.SetContentItems(se);
+            string strid = se.id.ToString();
+            se.id = int.Parse(this.label1.Text);
+            se.importance = this.comboBoxS.Text;
+            se.content = this.textBoxS.Text;
+            se.remarks = this.textBoxS2.Text;
+            se.date = this.correction.date;
+
+            form.SetcontentItems(se);
 
             //----3.詰め込んだ物を渡す
 
