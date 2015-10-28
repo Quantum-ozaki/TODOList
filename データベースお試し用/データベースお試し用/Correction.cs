@@ -8,28 +8,28 @@ namespace データベースお試し用
 {
     public class Correction
     {
-        public int ID
+        public int id
         {
             get;
             set;
-            //ID, important, Content, Remarks, Dated
+            //ID, importance, Content, Remarks, Dated
         }
-        public string Important
-        {
-            get;
-            set;
-        }
-        public string Content
+        public string importance
         {
             get;
             set;
         }
-        public string Remarks
+        public string content
         {
             get;
             set;
         }
-        public string Dated
+        public string remarks
+        {
+            get;
+            set;
+        }
+        public string date
         {
             get;
             set;
@@ -47,21 +47,11 @@ namespace データベースお試し用
         /// 引数ありコンストラクタ
         /// </summary>
         /// <param name="ID"></param>
-        /// <param name="Important"></param>
+        /// <param name="importance"></param>
         /// <param name="Content"></param>
         /// <param name="Remarks"></param>
         /// <param name="Dated"></param>
         /// 
-        public Correction(int ID, string Important, string Content, string Remarks, string Dated)
-        {
-            this.ID = ID;
-            this.Important = Important;
-            this.Content = Content;
-            this.Remarks = Remarks;
-            this.Dated = Dated;
-
-
-        }
 
 
 

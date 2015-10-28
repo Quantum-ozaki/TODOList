@@ -1,0 +1,256 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using System.Data.SqlClient;
+
+namespace データベースお試し用
+{
+    public partial class Form4 : Form
+    {
+        public Form4()
+        {
+            InitializeComponent();
+
+            dateTimePicker2.Format = DateTimePickerFormat.Short;
+
+            listView2.View = View.Details;
+            listView2.CheckBoxes = true;
+
+            listView2.Columns.Add("□", 25, HorizontalAlignment.Left);
+            listView2.Columns.Add("重要度", 50, HorizontalAlignment.Left);
+            listView2.Columns.Add("内容", 100, HorizontalAlignment.Left);
+            listView2.Columns.Add("分類", 50, HorizontalAlignment.Left);
+            listView2.Columns.Add("金額", 50, HorizontalAlignment.Left);
+            listView2.Columns.Add("日付", 50, HorizontalAlignment.Left);
+            listView2.Columns.Add("備考", 50, HorizontalAlignment.Left);
+
+            comboBox1.Items.Add("Ａ");
+            comboBox1.Items.Add("Ｂ");
+            comboBox1.Items.Add("Ｃ");
+            comboBox1.Items.Add("Ｄ");
+
+            // 必要な変数を宣言する
+            DateTime dtNow = DateTime.Now;
+
+            // 月 (Month) を取得する
+            int iMonth = dtNow.Month;
+            label7.Text = iMonth.ToString() + "月の予算";
+
+
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //リストビューをリセット
+            foreach (ListViewItem item in this.listView2.Items)
+            {
+                listView2.Items.Remove(item);
+            }
+
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT * FROM content");
+
+
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+
+
+                string id = reader.GetString("id");
+                string importance = reader.GetString("importance");
+                string content = reader.GetString("content");
+                string category = reader.GetString("category");
+                string price = reader.GetString("price");
+                DateTime date = reader.GetDateTime("date");
+                string remarks = reader.GetString("remarks");
+
+                string strdate = date.ToString("yyyy/MM/dd");
+
+                ListViewItem itemx1 = new ListViewItem();
+                itemx1.Text = id;
+                itemx1.SubItems.Add(importance);
+                itemx1.SubItems.Add(content);
+                itemx1.SubItems.Add(category);
+                itemx1.SubItems.Add(price);
+                itemx1.SubItems.Add(strdate);
+                itemx1.SubItems.Add(remarks);
+
+
+                listView2.Items.Add(itemx1);
+            }
+
+            //最後にとじる
+            con.Close();
+        }
+
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                //MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            // フォームの内容
+            string strCategory = comboBox1.Text;
+            string strContent = textBox1.Text;
+            string strPrice = textBox2.Text;
+            string strRemarks = textBox3.Text;
+            //string strData = dateTimePicker2.Text;
+
+            string strData = dateTimePicker2.Text;
+            //文字列をDateTime値に変換する
+            DateTime dtData = DateTime.Parse(strData);
+
+
+            // INSERT文出す
+            StringBuilder sql = new StringBuilder();
+            //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
+            sql.AppendLine("INSERT INTO content (user_id, importance, content, category, price, date, remarks ) VALUES('0','0','" + strContent + "','" + strCategory + "','" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            cmd.ExecuteNonQuery();
+
+
+            //最後にとじる
+            con.Close();
+
+            comboBox1.Text = "";
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+
+            //接続する
+            button1_Click(sender, e);
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                //MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            foreach (ListViewItem itemx in listView2.CheckedItems)
+            {
+                string msg = itemx.Text;
+                //MessageBox.Show("チェックが付いている項目は" + msg);
+
+
+                // DELETE文出す
+                StringBuilder sql = new StringBuilder();
+                sql.AppendLine("DELETE FROM content WHERE id = '" + msg + "'");
+                //MessageBox.Show(msg);
+
+                // よみこむやつ
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                cmd.ExecuteNonQuery();
+            }
+
+
+            //最後にとじる
+            con.Close();
+
+            //接続する
+            button1_Click(sender, e);
+
+        }
+
+        private void buttonChange_Click(object sender, EventArgs e)
+        {
+
+            Correction cn = new Correction();
+            cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
+            cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
+            cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
+            cn.remarks = this.listView2.CheckedItems[0].SubItems[3].Text;
+
+
+            /*
+            comboBox1.Text = cn.category;
+            textBox1.Text = cn.content;
+            textBox2.Text = cn.price;
+            textBox3.Text = cn.remarks;
+            */
+
+        }
+    }
+}
