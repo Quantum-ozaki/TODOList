@@ -1,20 +1,22 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using System.Data.SqlClient;
 
 namespace データベースお試し用
 {
     public partial class Form4 : Form
     {
+        private List<Category> categories;
+
         public Form4()
         {
             InitializeComponent();
@@ -37,10 +39,27 @@ namespace データベースお試し用
             listView2.Columns.Add("日付", 100, HorizontalAlignment.Left);
             listView2.Columns.Add("備考", 100, HorizontalAlignment.Left);
 
-            comboBox1.Items.Add("Ａ");
-            comboBox1.Items.Add("Ｂ");
-            comboBox1.Items.Add("Ｃ");
-            comboBox1.Items.Add("Ｄ");
+            // 分類のコンボボックスを初期化する
+            categories = new List<Category>();
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                string sql = "SELECT id, name FROM category;";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                var reader = cmd.ExecuteReader();
+                while(reader.Read()){
+                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
+                    categories.Add(tmp);
+                    comboBox1.Items.Add(tmp.Name);
+                }
+            }
+
+            //comboBox1.Items.Add("Ａ");
+            //comboBox1.Items.Add("Ｂ");
+            //comboBox1.Items.Add("Ｃ");
+            //comboBox1.Items.Add("Ｄ");
 
             // 必要な変数を宣言する
             DateTime dtNow = DateTime.Now;
@@ -83,7 +102,7 @@ namespace データベースお試し用
 
             // セレクト文出す
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT * FROM content");
+            sql.AppendLine("SELECT * FROM content co JOIN category ca ON co.category_id = ca.id;");
 
 
 
@@ -99,7 +118,11 @@ namespace データベースお試し用
                 string id = reader.GetString("id");
                 string importance = reader.GetString("importance");
                 string content = reader.GetString("content");
+<<<<<<< HEAD
                 string category_id = reader.GetString("category_id");
+=======
+                string category = reader.GetString("name");
+>>>>>>> 6b8cbf65bec038d3b4a7b7d274ee7996b76a56b4
                 string price = reader.GetString("price");
                 DateTime date = reader.GetDateTime("date");
                 string remarks = reader.GetString("remarks");
@@ -162,8 +185,13 @@ namespace データベースお試し用
 
             // INSERT文出す
             StringBuilder sql = new StringBuilder();
+<<<<<<< HEAD
             //sql.AppendLine("INSERT INTO content (id, importance, content, category_id, price, date, remarks) VALUES('" + strcategory_id + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
             sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES('0','0','" + strContent + "','" + strcategory_id + "','" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+=======
+            //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
+            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = " + strCategory + "),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+>>>>>>> 6b8cbf65bec038d3b4a7b7d274ee7996b76a56b4
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -292,7 +320,11 @@ namespace データベースお試し用
           
 
             string sql = string.Format("UPDATE content SET content = '{0}', category_id = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
+<<<<<<< HEAD
               se.content, se.category_id, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
+=======
+              se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
+>>>>>>> 6b8cbf65bec038d3b4a7b7d274ee7996b76a56b4
 
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
