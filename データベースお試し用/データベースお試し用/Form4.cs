@@ -40,21 +40,7 @@ namespace データベースお試し用
             listView2.Columns.Add("備考", 100, HorizontalAlignment.Left);
 
             // 分類のコンボボックスを初期化する
-            categories = new List<Category>();
-            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
-            {
-                con.Open();
-
-                string sql = "SELECT id, name FROM category;";
-
-                MySqlCommand cmd = new MySqlCommand(sql, con);
-                var reader = cmd.ExecuteReader();
-                while(reader.Read()){
-                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
-                    categories.Add(tmp);
-                    comboBox1.Items.Add(tmp.Name);
-                }
-            }
+            UpdateCategories();
 
             //comboBox1.Items.Add("Ａ");
             //comboBox1.Items.Add("Ｂ");
@@ -273,7 +259,7 @@ namespace データベースお試し用
 
             //cn.id = this.savedidList[this.listView2.CheckedItems[0].Index];
             cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
-           // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
+            // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
             cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
             //cn.category_id = int.Parse(this.listView2.CheckedItems[3].SubItems[0].Text);
             cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
@@ -302,7 +288,7 @@ namespace データベースお試し用
 
             string id_string = se.id.ToString();
             var target_item = this.listView2.Items.Find(id_string, false);
-            
+
 
             target_item[0].SubItems[0].Text = se.id.ToString();
             target_item[0].SubItems[2].Text = se.content;
@@ -310,7 +296,7 @@ namespace データベースお試し用
             target_item[0].SubItems[4].Text = se.price;
             target_item[0].SubItems[5].Text = se.date.ToString("yyyy/MM/dd");
             target_item[0].SubItems[6].Text = se.remarks;
-          
+
 
 
             string sql = string.Format("UPDATE content SET content = '{0}', category_id = (SELECT id FROM category WHERE name = '{1}'), price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
@@ -334,7 +320,7 @@ namespace データベースお試し用
                 MessageBox.Show(ex.Message);
             }
 
-      
+
 
         }
 
@@ -399,7 +385,7 @@ namespace データベースお試し用
 
 
 
-           
+
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -420,6 +406,36 @@ namespace データベースお試し用
             //最後にとじる
             con.Close();
 
+        }
+
+        private void cateogoryDialogBtn_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new CategoryDialog())
+            {
+                dialog.ShowDialog(this);
+            }
+
+            UpdateCategories();
+        }
+
+        private void UpdateCategories()
+        {
+            categories = new List<Category>();
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                string sql = "SELECT id, name FROM category;";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
+                    categories.Add(tmp);
+                    comboBox1.Items.Add(tmp.Name);
+                }
+            }
         }
     }
 }

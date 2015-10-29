@@ -34,6 +34,7 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnTotal = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
@@ -58,7 +59,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.label8 = new System.Windows.Forms.Label();
             this.csvBtn = new System.Windows.Forms.Button();
-            this.btnTotal = new System.Windows.Forms.Button();
+            this.cateogoryDialogBtn = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -127,6 +128,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "集計表示";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // btnTotal
+            // 
+            this.btnTotal.Location = new System.Drawing.Point(21, 200);
+            this.btnTotal.Name = "btnTotal";
+            this.btnTotal.Size = new System.Drawing.Size(144, 23);
+            this.btnTotal.TabIndex = 48;
+            this.btnTotal.Text = "月別集計";
+            this.btnTotal.UseVisualStyleBackColor = true;
+            this.btnTotal.Click += new System.EventHandler(this.btnTotal_Click);
             // 
             // label6
             // 
@@ -362,21 +373,22 @@
             this.csvBtn.UseVisualStyleBackColor = true;
             this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
-            // btnTotal
+            // cateogoryDialogBtn
             // 
-            this.btnTotal.Location = new System.Drawing.Point(21, 200);
-            this.btnTotal.Name = "btnTotal";
-            this.btnTotal.Size = new System.Drawing.Size(144, 23);
-            this.btnTotal.TabIndex = 48;
-            this.btnTotal.Text = "月別集計";
-            this.btnTotal.UseVisualStyleBackColor = true;
-            this.btnTotal.Click += new System.EventHandler(this.btnTotal_Click);
+            this.cateogoryDialogBtn.Location = new System.Drawing.Point(484, 37);
+            this.cateogoryDialogBtn.Name = "cateogoryDialogBtn";
+            this.cateogoryDialogBtn.Size = new System.Drawing.Size(156, 26);
+            this.cateogoryDialogBtn.TabIndex = 48;
+            this.cateogoryDialogBtn.Text = "分類管理";
+            this.cateogoryDialogBtn.UseVisualStyleBackColor = true;
+            this.cateogoryDialogBtn.Click += new System.EventHandler(this.cateogoryDialogBtn_Click);
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
+            this.Controls.Add(this.cateogoryDialogBtn);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);
@@ -430,5 +442,6 @@
 
         private System.Windows.Forms.Button csvBtn;
         private System.Windows.Forms.Button btnTotal;
+        private System.Windows.Forms.Button cateogoryDialogBtn;
     }
 }
