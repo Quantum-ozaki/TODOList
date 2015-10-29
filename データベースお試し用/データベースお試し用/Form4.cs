@@ -56,10 +56,6 @@ namespace データベースお試し用
                 }
             }
 
-            //comboBox1.Items.Add("Ａ");
-            //comboBox1.Items.Add("Ｂ");
-            //comboBox1.Items.Add("Ｃ");
-            //comboBox1.Items.Add("Ｄ");
 
             // 必要な変数を宣言する
             DateTime dtNow = DateTime.Now;
@@ -370,6 +366,8 @@ namespace データベースお試し用
 
         private void btnTotal_Click(object sender, EventArgs e)
         {
+  
+
             //リストビューをリセット
             foreach (ListViewItem item in this.listView3.Items)
             {
@@ -397,10 +395,6 @@ namespace データベースお試し用
             //sql.AppendLine("SELECT SUM(price) AS total FROM content");
             sql.AppendLine("SELECT DATE_FORMAT(date, '%Y-%m') as date, SUM(price) AS total FROM content GROUP BY DATE_FORMAT(date, '%Y%m')");
 
-
-
-           
-
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -417,8 +411,70 @@ namespace データベースお試し用
                 listView3.Items.Add(itemx2);
             }
 
+         
+
+
+
             //最後にとじる
             con.Close();
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+
+            // 必要な変数を宣言する
+            DateTime dtNow = DateTime.Now;
+            // 月 (Month) を取得する
+            int iMonth = dtNow.Month;
+            int iYear = dtNow.Year;
+
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            //sql.AppendLine("SELECT SUM(price) AS total FROM content");
+            sql.AppendLine("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m')= '" + iYear + iMonth + "'");
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+                string total = reader.GetString("total");
+            
+                //MessageBox.Show(total);
+                double iBudget = double.Parse(textBox11.Text);
+                double iTotal = double.Parse(total);
+                double iRsult = iTotal / iBudget * 100;
+                //double iRsult = int Rsult;
+                int Rsult = (int)iRsult;
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = 100;
+                progressBar1.Value = Rsult;
+                label12.Text = Rsult.ToString() + "%";
+
+
+            }
+
 
         }
     }
