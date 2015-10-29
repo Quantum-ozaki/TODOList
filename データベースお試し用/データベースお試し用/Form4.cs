@@ -98,7 +98,7 @@ namespace データベースお試し用
 
             // セレクト文出す
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT * FROM content co JOIN category ca ON co.category_id = ca.id;");
+            sql.AppendLine("SELECT * FROM content co JOIN category ca ON co.category_id = ca.id ORDER BY date ASC;");
 
 
 
@@ -467,15 +467,40 @@ namespace データベースお試し用
                 double iRsult = iTotal / iBudget * 100;
                 //double iRsult = int Rsult;
                 int Rsult = (int)iRsult;
-                progressBar1.Minimum = 0;
-                progressBar1.Maximum = 100;
-                progressBar1.Value = Rsult;
-                label12.Text = Rsult.ToString() + "%";
+
+                if (Rsult <= 100)
+                {
+                    progressBar1.Minimum = 0;
+                    progressBar1.Maximum = 100;
+                    progressBar1.Value = Rsult;
+                    label12.Text = Rsult.ToString() + "%";
+                }
+
+                else if(Rsult > 100)
+                {
+                    progressBar1.Minimum = 0;
+                    progressBar1.Maximum = 100;
+                    progressBar1.Value = 100;
+                    label12.Text = Rsult.ToString() + "%";
+                    MessageBox.Show("予算額を超えました！");
+                    //Color foreColor = Color.Red;
+                }
+
 
 
             }
 
 
+        }
+
+        private void buttonEnd_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Color foreColor = Color.Red;
         }
     }
 }
