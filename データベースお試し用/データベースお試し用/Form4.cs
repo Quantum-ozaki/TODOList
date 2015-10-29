@@ -285,7 +285,7 @@ namespace データベースお試し用
             target_item[0].SubItems[6].Text = se.remarks;
           
 
-            string sql = string.Format("UPdate content SET content = '{0}', category = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
+            string sql = string.Format("UPDATE content SET content = '{0}', category = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
               se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
 
             MySqlConnection con = new MySqlConnection();
@@ -308,6 +308,35 @@ namespace データベースお試し用
 
       
 
+        }
+
+        private void csvBtn_Click(object sender, EventArgs e)
+        {
+            string save_path = "";
+            using (FileDialog dialog = new SaveFileDialog())
+            {
+                dialog.Title = "CSVファイルの保存";
+                dialog.AddExtension = true;
+                dialog.DefaultExt = "csv";
+
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    save_path = dialog.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            using (CSVWriter writer = new CSVWriter(save_path))
+            {
+                writer.WriteHeader("ID, importance, content, category, price, date, remarks");
+                foreach (var item in this.listView2.Items)
+                {
+                    writer.Write((ListViewItem)item);
+                }
+            }
         }
 
     }

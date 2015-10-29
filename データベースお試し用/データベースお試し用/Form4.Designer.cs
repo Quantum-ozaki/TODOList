@@ -34,25 +34,26 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.listView3 = new System.Windows.Forms.ListView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.listView2 = new System.Windows.Forms.ListView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +71,7 @@
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.csvBtn = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -140,14 +141,23 @@
             this.tabPage3.Text = "集計表示";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
-            // listView3
+            // label6
             // 
-            this.listView3.BackColor = System.Drawing.Color.LightGray;
-            this.listView3.Location = new System.Drawing.Point(192, 0);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(471, 234);
-            this.listView3.TabIndex = 26;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(28, 81);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 12);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "コメント";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(26, 97);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(144, 64);
+            this.textBox4.TabIndex = 30;
             // 
             // textBox11
             // 
@@ -155,6 +165,15 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(144, 19);
             this.textBox11.TabIndex = 27;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(95, 167);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "登録";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -167,32 +186,14 @@
             this.label7.Text = "　月の予算";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button3
+            // listView3
             // 
-            this.button3.Location = new System.Drawing.Point(95, 167);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "登録";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(26, 97);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(144, 64);
-            this.textBox4.TabIndex = 30;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 81);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 12);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "コメント";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.listView3.BackColor = System.Drawing.Color.LightGray;
+            this.listView3.Location = new System.Drawing.Point(192, 0);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(471, 234);
+            this.listView3.TabIndex = 26;
+            this.listView3.UseCompatibleStateImageBehavior = false;
             // 
             // tabPage1
             // 
@@ -219,64 +220,53 @@
             this.tabPage1.Text = "一覧表示";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // listView2
+            // label9
             // 
-            this.listView2.BackColor = System.Drawing.Color.LightGray;
-            this.listView2.Location = new System.Drawing.Point(192, 0);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(471, 234);
-            this.listView2.TabIndex = 27;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 182);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 12);
+            this.label9.TabIndex = 40;
+            this.label9.Text = "チェックした項目を";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label5
+            // comboBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 51);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "分類";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(51, 47);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 20);
+            this.comboBox1.TabIndex = 32;
             // 
-            // label4
+            // textBox1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "品名";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.textBox1.Location = new System.Drawing.Point(51, 73);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(121, 19);
+            this.textBox1.TabIndex = 28;
             // 
-            // label3
+            // textBox2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 34;
-            this.label3.Text = "日付";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.textBox2.Location = new System.Drawing.Point(51, 99);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(121, 19);
+            this.textBox2.TabIndex = 29;
             // 
-            // label2
+            // textBox3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "金額";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.textBox3.Location = new System.Drawing.Point(51, 124);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(121, 19);
+            this.textBox3.TabIndex = 30;
             // 
-            // button2
+            // dateTimePicker2
             // 
-            this.button2.Location = new System.Drawing.Point(97, 148);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 33;
-            this.button2.Text = "登録";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.dateTimePicker2.Location = new System.Drawing.Point(51, 22);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(121, 19);
+            this.dateTimePicker2.TabIndex = 31;
+            this.dateTimePicker2.Value = new System.DateTime(2015, 10, 28, 15, 24, 45, 0);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // label1
             // 
@@ -288,43 +278,64 @@
             this.label1.Text = "備考";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // dateTimePicker2
+            // button2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(51, 22);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(121, 19);
-            this.dateTimePicker2.TabIndex = 31;
-            this.dateTimePicker2.Value = new System.DateTime(2015, 10, 28, 15, 24, 45, 0);
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
+            this.button2.Location = new System.Drawing.Point(97, 148);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 33;
+            this.button2.Text = "登録";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox3
+            // label2
             // 
-            this.textBox3.Location = new System.Drawing.Point(51, 124);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 19);
-            this.textBox3.TabIndex = 30;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 101);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "金額";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox2
+            // label3
             // 
-            this.textBox2.Location = new System.Drawing.Point(51, 99);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 19);
-            this.textBox2.TabIndex = 29;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "日付";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox1
+            // label4
             // 
-            this.textBox1.Location = new System.Drawing.Point(51, 73);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 19);
-            this.textBox1.TabIndex = 28;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "品名";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // comboBox1
+            // label5
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(51, 47);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 32;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 51);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "分類";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // listView2
+            // 
+            this.listView2.BackColor = System.Drawing.Color.LightGray;
+            this.listView2.Location = new System.Drawing.Point(192, 0);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(471, 234);
+            this.listView2.TabIndex = 27;
+            this.listView2.UseCompatibleStateImageBehavior = false;
             // 
             // tabControl1
             // 
@@ -346,7 +357,7 @@
             this.toolStripMenuItem1});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(708, 24);
+            this.mainMenu.Size = new System.Drawing.Size(708, 26);
             this.mainMenu.TabIndex = 44;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -357,24 +368,24 @@
             this.toolStripSeparator1,
             this.終了XToolStripMenuItem});
             this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
-            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(85, 22);
             this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
             // 
             // 保存SToolStripMenuItem
             // 
             this.保存SToolStripMenuItem.Name = "保存SToolStripMenuItem";
-            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.保存SToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.保存SToolStripMenuItem.Text = "保存(&S)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // 終了XToolStripMenuItem
             // 
             this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
-            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.終了XToolStripMenuItem.Text = "終了(&X)";
             // 
             // 編集EToolStripMenuItem
@@ -384,25 +395,25 @@
             this.変更CToolStripMenuItem,
             this.削除DToolStripMenuItem});
             this.編集EToolStripMenuItem.Name = "編集EToolStripMenuItem";
-            this.編集EToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.編集EToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
             this.編集EToolStripMenuItem.Text = "編集(&E)";
             // 
             // 追加AToolStripMenuItem
             // 
             this.追加AToolStripMenuItem.Name = "追加AToolStripMenuItem";
-            this.追加AToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.追加AToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.追加AToolStripMenuItem.Text = "追加(&A)";
             // 
             // 変更CToolStripMenuItem
             // 
             this.変更CToolStripMenuItem.Name = "変更CToolStripMenuItem";
-            this.変更CToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.変更CToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.変更CToolStripMenuItem.Text = "変更(&C)";
             // 
             // 削除DToolStripMenuItem
             // 
             this.削除DToolStripMenuItem.Name = "削除DToolStripMenuItem";
-            this.削除DToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.削除DToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.削除DToolStripMenuItem.Text = "削除(&D)";
             // 
             // 表示LToolStripMenuItem
@@ -411,19 +422,19 @@
             this.一覧表示LToolStripMenuItem,
             this.集計表示SToolStripMenuItem});
             this.表示LToolStripMenuItem.Name = "表示LToolStripMenuItem";
-            this.表示LToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.表示LToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
             this.表示LToolStripMenuItem.Text = "表示(&V)";
             // 
             // 一覧表示LToolStripMenuItem
             // 
             this.一覧表示LToolStripMenuItem.Name = "一覧表示LToolStripMenuItem";
-            this.一覧表示LToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.一覧表示LToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.一覧表示LToolStripMenuItem.Text = "一覧表示(&L)";
             // 
             // 集計表示SToolStripMenuItem
             // 
             this.集計表示SToolStripMenuItem.Name = "集計表示SToolStripMenuItem";
-            this.集計表示SToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.集計表示SToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.集計表示SToolStripMenuItem.Text = "集計表示(&S)";
             // 
             // ヘルプVToolStripMenuItem
@@ -431,19 +442,19 @@
             this.ヘルプVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.バージョン情報ToolStripMenuItem});
             this.ヘルプVToolStripMenuItem.Name = "ヘルプVToolStripMenuItem";
-            this.ヘルプVToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.ヘルプVToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
             this.ヘルプVToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
             // バージョン情報ToolStripMenuItem
             // 
             this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.バージョン情報ToolStripMenuItem.Text = "バージョン情報(&V)";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(72, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem1.Text = "エクスポート";
             // 
             // label8
@@ -457,21 +468,22 @@
             this.label8.TabIndex = 45;
             this.label8.Text = "家計簿アプリ";
             // 
-            // label9
+            // csvBtn
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 182);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 12);
-            this.label9.TabIndex = 40;
-            this.label9.Text = "チェックした項目を";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.csvBtn.Location = new System.Drawing.Point(545, 29);
+            this.csvBtn.Name = "csvBtn";
+            this.csvBtn.Size = new System.Drawing.Size(119, 23);
+            this.csvBtn.TabIndex = 46;
+            this.csvBtn.Text = "CSV出力";
+            this.csvBtn.UseVisualStyleBackColor = true;
+            this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
+            this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);
             this.Controls.Add(this.label8);
@@ -537,5 +549,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button csvBtn;
     }
 }
