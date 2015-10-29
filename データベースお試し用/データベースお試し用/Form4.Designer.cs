@@ -56,24 +56,12 @@
             this.listView2 = new System.Windows.Forms.ListView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
-            this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.編集EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.変更CToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.削除DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.表示LToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.一覧表示LToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.集計表示SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ヘルプVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
-
             this.csvBtn = new System.Windows.Forms.Button();
+            this.btnTotal = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonEnd
@@ -177,7 +165,6 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-
             this.label7.Location = new System.Drawing.Point(27, 41);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
@@ -348,98 +335,11 @@
             // 
             // mainMenu
             // 
-            this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルFToolStripMenuItem,
-            this.編集EToolStripMenuItem,
-            this.表示LToolStripMenuItem,
-            this.ヘルプVToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(708, 26);
-            this.mainMenu.TabIndex = 44;
-            this.mainMenu.Text = "menuStrip1";
+            this.mainMenu.Size = new System.Drawing.Size(708, 24);
+            this.mainMenu.TabIndex = 47;
             // 
-            // ファイルFToolStripMenuItem
-            // 
-            this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator1,
-            this.終了XToolStripMenuItem,
-            this.cSV出力ToolStripMenuItem});
-            this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
-            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(85, 22);
-            this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
-            // 
-
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // 終了XToolStripMenuItem
-            // 
-            this.終了XToolStripMenuItem.Name = "終了XToolStripMenuItem";
-            this.終了XToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.終了XToolStripMenuItem.Text = "終了(&X)";
-            // 
-            // 編集EToolStripMenuItem
-            // 
-            this.編集EToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.変更CToolStripMenuItem,
-            this.削除DToolStripMenuItem,
-            this.分類管理ToolStripMenuItem});
-            this.編集EToolStripMenuItem.Name = "編集EToolStripMenuItem";
-            this.編集EToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
-            this.編集EToolStripMenuItem.Text = "編集(&E)";
-            // 
-
-            // 変更CToolStripMenuItem
-            // 
-            this.変更CToolStripMenuItem.Name = "変更CToolStripMenuItem";
-            this.変更CToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.変更CToolStripMenuItem.Text = "変更(&C)";
-            // 
-            // 削除DToolStripMenuItem
-            // 
-            this.削除DToolStripMenuItem.Name = "削除DToolStripMenuItem";
-            this.削除DToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.削除DToolStripMenuItem.Text = "削除(&D)";
-            // 
-            // 表示LToolStripMenuItem
-            // 
-            this.表示LToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.一覧表示LToolStripMenuItem,
-            this.集計表示SToolStripMenuItem});
-            this.表示LToolStripMenuItem.Name = "表示LToolStripMenuItem";
-            this.表示LToolStripMenuItem.Size = new System.Drawing.Size(62, 22);
-            this.表示LToolStripMenuItem.Text = "表示(&V)";
-            // 
-            // 一覧表示LToolStripMenuItem
-            // 
-            this.一覧表示LToolStripMenuItem.Name = "一覧表示LToolStripMenuItem";
-            this.一覧表示LToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.一覧表示LToolStripMenuItem.Text = "一覧表示(&L)";
-            // 
-            // 集計表示SToolStripMenuItem
-            // 
-            this.集計表示SToolStripMenuItem.Name = "集計表示SToolStripMenuItem";
-            this.集計表示SToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.集計表示SToolStripMenuItem.Text = "集計表示(&S)";
-            // 
-            // ヘルプVToolStripMenuItem
-            // 
-            this.ヘルプVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.バージョン情報ToolStripMenuItem});
-            this.ヘルプVToolStripMenuItem.Name = "ヘルプVToolStripMenuItem";
-            this.ヘルプVToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
-            this.ヘルプVToolStripMenuItem.Text = "ヘルプ(&H)";
-            // 
-            // バージョン情報ToolStripMenuItem
-            // 
-            this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.バージョン情報ToolStripMenuItem.Text = "バージョン情報(&V)";
-            // 
-
             // label8
             // 
             this.label8.AutoSize = true;
@@ -451,38 +351,6 @@
             this.label8.TabIndex = 45;
             this.label8.Text = "家計簿アプリ";
             // 
-
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(317, 68);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 23);
-            this.button4.TabIndex = 46;
-            this.button4.Text = "合計金額表示";
-            this.button4.UseVisualStyleBackColor = true;
-            //this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // cSV出力ToolStripMenuItem
-            // 
-            this.cSV出力ToolStripMenuItem.Name = "cSV出力ToolStripMenuItem";
-            this.cSV出力ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cSV出力ToolStripMenuItem.Text = "CSV出力";
-            // 
-            // 分類管理ToolStripMenuItem
-            // 
-            this.分類管理ToolStripMenuItem.Name = "分類管理ToolStripMenuItem";
-            this.分類管理ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.分類管理ToolStripMenuItem.Text = "分類管理";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(444, 68);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 47;
-            this.button5.Text = "分類管理";
-            this.button5.UseVisualStyleBackColor = true;
-
             // csvBtn
             // 
             this.csvBtn.Location = new System.Drawing.Point(545, 29);
@@ -493,14 +361,22 @@
             this.csvBtn.UseVisualStyleBackColor = true;
             this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
+            // btnTotal
+            // 
+            this.btnTotal.Location = new System.Drawing.Point(359, 68);
+            this.btnTotal.Name = "btnTotal";
+            this.btnTotal.Size = new System.Drawing.Size(160, 23);
+            this.btnTotal.TabIndex = 48;
+            this.btnTotal.Text = "合計表示テスト";
+            this.btnTotal.UseVisualStyleBackColor = true;
+            this.btnTotal.Click += new System.EventHandler(this.btnTotal_Click);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
-
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnTotal);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);
@@ -516,8 +392,6 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.mainMenu.ResumeLayout(false);
-            this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,24 +425,10 @@
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.MenuStrip mainMenu;
-        private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem 終了XToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 編集EToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 変更CToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 削除DToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 表示LToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 一覧表示LToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 集計表示SToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ヘルプVToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
 
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ToolStripMenuItem cSV出力ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 分類管理ToolStripMenuItem;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button csvBtn;
+        private System.Windows.Forms.Button btnTotal;
     }
 }

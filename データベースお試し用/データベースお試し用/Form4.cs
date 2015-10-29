@@ -24,19 +24,7 @@ namespace データベースお試し用
 
             listView3.View = View.Details;
             listView3.Columns.Add("金額合計");
-            listView3.Columns.Add("1月", 40);
-            listView3.Columns.Add("2月", 40);
-            listView3.Columns.Add("3月", 40);
-            listView3.Columns.Add("4月", 40);
-            listView3.Columns.Add("5月", 40);
-            listView3.Columns.Add("6月", 40);
-            listView3.Columns.Add("7月", 40);
-            listView3.Columns.Add("8月", 40);
-            listView3.Columns.Add("9月", 40);
-            listView3.Columns.Add("10月", 40);
-            listView3.Columns.Add("11月", 40);
-            listView3.Columns.Add("12月", 40);
-
+            listView3.Columns.Add("金額合計");
 
             listView2.View = View.Details;
             listView2.CheckBoxes = true;
@@ -111,7 +99,7 @@ namespace データベースお試し用
                 string id = reader.GetString("id");
                 string importance = reader.GetString("importance");
                 string content = reader.GetString("content");
-                string category = reader.GetString("category");
+                string category_id = reader.GetString("category_id");
                 string price = reader.GetString("price");
                 DateTime date = reader.GetDateTime("date");
                 string remarks = reader.GetString("remarks");
@@ -123,7 +111,7 @@ namespace データベースお試し用
                 itemx1.Text = id;
                 itemx1.SubItems.Add(importance);
                 itemx1.SubItems.Add(content);
-                itemx1.SubItems.Add(category);
+                itemx1.SubItems.Add(category_id);
                 itemx1.SubItems.Add(price);
                 itemx1.SubItems.Add(strdate);
                 itemx1.SubItems.Add(remarks);
@@ -161,7 +149,7 @@ namespace データベースお試し用
             }
 
             // フォームの内容
-            string strCategory = comboBox1.Text;
+            string strcategory_id = comboBox1.Text;
             string strContent = textBox1.Text;
             string strPrice = textBox2.Text;
             string strRemarks = textBox3.Text;
@@ -174,8 +162,8 @@ namespace データベースお試し用
 
             // INSERT文出す
             StringBuilder sql = new StringBuilder();
-            //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
-            sql.AppendLine("INSERT INTO content (user_id, importance, content, category, price, date, remarks ) VALUES('0','0','" + strContent + "','" + strCategory + "','" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+            //sql.AppendLine("INSERT INTO content (id, importance, content, category_id, price, date, remarks) VALUES('" + strcategory_id + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
+            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES('0','0','" + strContent + "','" + strcategory_id + "','" + strPrice + "','" + dtData + "','" + strRemarks + "')");
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -266,7 +254,8 @@ namespace データベースお試し用
             cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
            // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
             cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
-            cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
+            //cn.category_id = int.Parse(this.listView2.CheckedItems[3].SubItems[0].Text);
+            cn.category_id = this.listView2.CheckedItems[3].SubItems[0].Text;
             cn.price = this.listView2.CheckedItems[0].SubItems[4].Text;
             cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
             cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
@@ -296,14 +285,14 @@ namespace データベースお試し用
 
             target_item[0].SubItems[0].Text = se.id.ToString();
             target_item[0].SubItems[2].Text = se.content;
-            target_item[0].SubItems[3].Text = se.category;
+            target_item[0].SubItems[3].Text = se.category_id;
             target_item[0].SubItems[4].Text = se.price;
             target_item[0].SubItems[5].Text = se.date.ToString("yyyy/MM/dd (ddd)");
             target_item[0].SubItems[6].Text = se.remarks;
           
 
-            string sql = string.Format("UPDATE content SET content = '{0}', category = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
-              se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
+            string sql = string.Format("UPDATE content SET content = '{0}', category_id = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
+              se.content, se.category_id, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
 
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
@@ -349,7 +338,7 @@ namespace データベースお試し用
 
             using (CSVWriter writer = new CSVWriter(save_path))
             {
-                writer.WriteHeader("ID, importance, content, category, price, date, remarks");
+                writer.WriteHeader("ID, importance, content, category_id, price, date, remarks");
                 foreach (var item in this.listView2.Items)
                 {
                     writer.Write((ListViewItem)item);
@@ -357,5 +346,53 @@ namespace データベースお試し用
             }
         }
 
+        private void btnTotal_Click(object sender, EventArgs e)
+        {
+
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            //sql.AppendLine("SELECT SUM(price) AS total FROM content");
+            sql.AppendLine("SELECT DATE_FORMAT(date, '%Y-%m') as date, SUM(price) AS total FROM content GROUP BY DATE_FORMAT(date, '%Y%m')");
+
+
+
+           
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+                string date = reader.GetString("date");
+                string total = reader.GetString("total");
+
+                ListViewItem itemx2 = new ListViewItem();
+                itemx2.Text = date;
+                itemx2.SubItems.Add(total);
+                listView3.Items.Add(itemx2);
+            }
+
+            //最後にとじる
+            con.Close();
+
+        }
     }
 }

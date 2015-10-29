@@ -101,7 +101,7 @@
         private System.Windows.Forms.TextBox textBoxS2;
         private System.Windows.Forms.TextBox textBoxS;
         private System.Windows.Forms.Button button5;
-        internal string important;
+       internal string important;
         private System.Windows.Forms.Label label1;
 
         public int ID { get; internal set; }
