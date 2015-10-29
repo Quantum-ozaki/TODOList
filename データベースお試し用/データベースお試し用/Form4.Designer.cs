@@ -436,6 +436,7 @@
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textBox10);
+            this.MaximizeBox = false;
             this.Name = "Form4";
             this.Text = "Form4";
             this.Load += new System.EventHandler(this.Form4_Load);
