@@ -118,11 +118,8 @@ namespace データベースお試し用
                 string id = reader.GetString("id");
                 string importance = reader.GetString("importance");
                 string content = reader.GetString("content");
-<<<<<<< HEAD
                 string category_id = reader.GetString("category_id");
-=======
                 string category = reader.GetString("name");
->>>>>>> 6b8cbf65bec038d3b4a7b7d274ee7996b76a56b4
                 string price = reader.GetString("price");
                 DateTime date = reader.GetDateTime("date");
                 string remarks = reader.GetString("remarks");
@@ -134,7 +131,7 @@ namespace データベースお試し用
                 itemx1.Text = id;
                 itemx1.SubItems.Add(importance);
                 itemx1.SubItems.Add(content);
-                itemx1.SubItems.Add(category_id);
+                itemx1.SubItems.Add(category);
                 itemx1.SubItems.Add(price);
                 itemx1.SubItems.Add(strdate);
                 itemx1.SubItems.Add(remarks);
@@ -172,7 +169,7 @@ namespace データベースお試し用
             }
 
             // フォームの内容
-            string strcategory_id = comboBox1.Text;
+            string strCategory = comboBox1.Text;
             string strContent = textBox1.Text;
             string strPrice = textBox2.Text;
             string strRemarks = textBox3.Text;
@@ -185,13 +182,9 @@ namespace データベースお試し用
 
             // INSERT文出す
             StringBuilder sql = new StringBuilder();
-<<<<<<< HEAD
-            //sql.AppendLine("INSERT INTO content (id, importance, content, category_id, price, date, remarks) VALUES('" + strcategory_id + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
-            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES('0','0','" + strContent + "','" + strcategory_id + "','" + strPrice + "','" + dtData + "','" + strRemarks + "')");
-=======
+
             //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
-            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = " + strCategory + "),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
->>>>>>> 6b8cbf65bec038d3b4a7b7d274ee7996b76a56b4
+            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = '" + strCategory + "'),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -283,7 +276,7 @@ namespace データベースお試し用
            // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
             cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
             //cn.category_id = int.Parse(this.listView2.CheckedItems[3].SubItems[0].Text);
-            cn.category_id = this.listView2.CheckedItems[3].SubItems[0].Text;
+            cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
             cn.price = this.listView2.CheckedItems[0].SubItems[4].Text;
             cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
             cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
@@ -313,18 +306,15 @@ namespace データベースお試し用
 
             target_item[0].SubItems[0].Text = se.id.ToString();
             target_item[0].SubItems[2].Text = se.content;
-            target_item[0].SubItems[3].Text = se.category_id;
+            target_item[0].SubItems[3].Text = se.category;
             target_item[0].SubItems[4].Text = se.price;
             target_item[0].SubItems[5].Text = se.date.ToString("yyyy/MM/dd (ddd)");
             target_item[0].SubItems[6].Text = se.remarks;
           
 
             string sql = string.Format("UPDATE content SET content = '{0}', category_id = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
-<<<<<<< HEAD
-              se.content, se.category_id, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
-=======
+
               se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
->>>>>>> 6b8cbf65bec038d3b4a7b7d274ee7996b76a56b4
 
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
@@ -380,6 +370,11 @@ namespace データベースお試し用
 
         private void btnTotal_Click(object sender, EventArgs e)
         {
+            //リストビューをリセット
+            foreach (ListViewItem item in this.listView3.Items)
+            {
+                listView3.Items.Remove(item);
+            }
 
             //オブジェクト指向パラダイム
             MySqlConnection con = new MySqlConnection();

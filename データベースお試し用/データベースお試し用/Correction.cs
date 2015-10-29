@@ -30,7 +30,7 @@ namespace データベースお試し用
             set;
         }
 
-        public string category_id
+        public string category
         {
             get;
             set;

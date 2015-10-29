@@ -29,7 +29,7 @@ namespace データベースお試し用
 
             dateTimePicker2.Text = strData;
             label6.Text = strid;
-            comboBox1.Text = cn.category_id;
+            comboBox1.Text = cn.category;
             textBox1.Text = cn.content;
             textBox2.Text = cn.price;
             textBox3.Text = cn.remarks;
@@ -53,7 +53,7 @@ namespace データベースお試し用
 
             string strid = se.id.ToString();
             se.id = int.Parse(this.label6.Text);
-            se.category_id = this.comboBox1.Text;
+            se.category = this.comboBox1.Text;
             se.content = this.textBox1.Text;
             se.price = this.textBox2.Text;
             se.remarks = this.textBox3.Text;
