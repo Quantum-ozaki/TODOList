@@ -302,7 +302,7 @@ namespace データベースお試し用
             target_item[0].SubItems[6].Text = se.remarks;
           
 
-            string sql = string.Format("UPdate content SET content = '{0}', category = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
+            string sql = string.Format("UPDATE content SET content = '{0}', category = '{1}', price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
               se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
 
             MySqlConnection con = new MySqlConnection();
@@ -327,56 +327,35 @@ namespace データベースお試し用
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+
+        private void csvBtn_Click(object sender, EventArgs e)
         {
- 
-
-            //オブジェクト指向パラダイム
-            MySqlConnection con = new MySqlConnection();
-            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            con.ConnectionString = conString;
-
-            try
+            string save_path = "";
+            using (FileDialog dialog = new SaveFileDialog())
             {
-                con.Open();
-                // MessageBox.Show("接続成功");
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
+                dialog.Title = "CSVファイルの保存";
+                dialog.AddExtension = true;
+                dialog.DefaultExt = "csv";
 
-            }
-
-            // セレクト文出す
-            StringBuilder sql = new StringBuilder();
-            //sql.AppendLine("SELECT SUM(price) AS total FROM content");
-            sql.AppendLine("SELECT SUM price FROM AS total content WHERE>=20150501000000 and date <=20150531235959;");
-
-            //WHERE DATE_FORMAT(datecolumn, ’%Y%m%d’) = ’200405’;
-            // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-
-            // 結果を表示します。
-
-            while (reader.Read())
-            {
-
-                string total = reader.GetString("total");
-                MessageBox.Show(total);
-
-                ListViewItem itemx2 = new ListViewItem();
-                itemx2.Text = total;
-                listView3.Items.Add(itemx2);
-
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    save_path = dialog.FileName;
+                }
+                else
+                {
+                    return;
+                }
             }
 
-
-
-
-            //最後にとじる
-            con.Close();
+            using (CSVWriter writer = new CSVWriter(save_path))
+            {
+                writer.WriteHeader("ID, importance, content, category, price, date, remarks");
+                foreach (var item in this.listView2.Items)
+                {
+                    writer.Write((ListViewItem)item);
+                }
+            }
         }
+
     }
 }

@@ -394,7 +394,7 @@ namespace データベースお試し用
 
 
                 ListViewItem itemx1 = new ListViewItem();
-
+                itemx1.Name = id;
                 itemx1.Text = id;
                 itemx1.SubItems.Add(importance);
                 itemx1.SubItems.Add(content);
