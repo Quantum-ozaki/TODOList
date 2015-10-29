@@ -58,11 +58,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-<<<<<<< HEAD
-            this.button8 = new System.Windows.Forms.Button();
-=======
+
             this.csv_btn = new System.Windows.Forms.Button();
->>>>>>> e67b805c3a1c173ed83320b3c2eddd9dd54db6e8
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -336,17 +333,7 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
-<<<<<<< HEAD
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(31, 450);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(384, 31);
-            this.button8.TabIndex = 32;
-            this.button8.Text = "FORM4表示";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click_3);
-=======
+
             // csv_btn
             // 
             this.csv_btn.Location = new System.Drawing.Point(511, 13);
@@ -356,19 +343,14 @@
             this.csv_btn.Text = "CSV出力";
             this.csv_btn.UseVisualStyleBackColor = true;
             this.csv_btn.Click += new System.EventHandler(this.csv_btn_Click);
->>>>>>> e67b805c3a1c173ed83320b3c2eddd9dd54db6e8
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(493, 489);
-            this.Controls.Add(this.button8);
-=======
+
             this.ClientSize = new System.Drawing.Size(608, 385);
             this.Controls.Add(this.csv_btn);
->>>>>>> e67b805c3a1c173ed83320b3c2eddd9dd54db6e8
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -437,11 +419,8 @@
         public System.Windows.Forms.Label label12;
         public System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button7;
-<<<<<<< HEAD
-        private System.Windows.Forms.Button button8;
-=======
+
         private System.Windows.Forms.Button csv_btn;
->>>>>>> e67b805c3a1c173ed83320b3c2eddd9dd54db6e8
     }
 }
 

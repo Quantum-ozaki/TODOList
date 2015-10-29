@@ -21,11 +21,28 @@ namespace データベースお試し用
 
             dateTimePicker2.Format = DateTimePickerFormat.Short;
 
+
+            listView3.View = View.Details;
+            listView3.Columns.Add("金額合計");
+            listView3.Columns.Add("1月", 40);
+            listView3.Columns.Add("2月", 40);
+            listView3.Columns.Add("3月", 40);
+            listView3.Columns.Add("4月", 40);
+            listView3.Columns.Add("5月", 40);
+            listView3.Columns.Add("6月", 40);
+            listView3.Columns.Add("7月", 40);
+            listView3.Columns.Add("8月", 40);
+            listView3.Columns.Add("9月", 40);
+            listView3.Columns.Add("10月", 40);
+            listView3.Columns.Add("11月", 40);
+            listView3.Columns.Add("12月", 40);
+
+
             listView2.View = View.Details;
             listView2.CheckBoxes = true;
 
             listView2.Columns.Add("□", 25, HorizontalAlignment.Left);
-            listView2.Columns.Add("重要度", 50, HorizontalAlignment.Left);
+            listView2.Columns.Add("重要度", 0, HorizontalAlignment.Left);
             listView2.Columns.Add("内容", 100, HorizontalAlignment.Left);
             listView2.Columns.Add("分類", 50, HorizontalAlignment.Left);
             listView2.Columns.Add("金額", 50, HorizontalAlignment.Left);
@@ -310,5 +327,56 @@ namespace データベースお試し用
 
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+ 
+
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+
+            }
+
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            //sql.AppendLine("SELECT SUM(price) AS total FROM content");
+            sql.AppendLine("SELECT SUM price FROM AS total content WHERE>=20150501000000 and date <=20150531235959;");
+
+            //WHERE DATE_FORMAT(datecolumn, ’%Y%m%d’) = ’200405’;
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+
+            // 結果を表示します。
+
+            while (reader.Read())
+            {
+
+                string total = reader.GetString("total");
+                MessageBox.Show(total);
+
+                ListViewItem itemx2 = new ListViewItem();
+                itemx2.Text = total;
+                listView3.Items.Add(itemx2);
+
+            }
+
+
+
+
+            //最後にとじる
+            con.Close();
+        }
     }
 }
