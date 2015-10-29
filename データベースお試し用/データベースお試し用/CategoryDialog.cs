@@ -15,7 +15,7 @@ namespace データベースお試し用
     public partial class CategoryDialog : Form
     {
         private List<Category> categories;
-        private int last_selected_index;
+        private int? last_selected_index;
 
         public CategoryDialog()
         {
@@ -26,6 +26,7 @@ namespace データベースお試し用
             listView1.View = View.Details;
             listView1.MultiSelect = false;
             listView1.LabelEdit = true;
+            listView1.FullRowSelect = true;
             listView1.Columns.Add("ID", 50, HorizontalAlignment.Left);
             listView1.Columns.Add("分類名", 100, HorizontalAlignment.Left);
 
@@ -34,11 +35,17 @@ namespace データベースお試し用
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!last_selected_index.HasValue)
+            {
+                last_selected_index = listView1.SelectedIndices[0];
+                return;
+            }
+
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
                 con.Open();
 
-                var selected_item = listView1.Items[last_selected_index];
+                var selected_item = listView1.Items[last_selected_index.Value];
                 string sql = string.Format("UPDATE category SET name = '{0}', create_user_id = 1, created_date = CURRENT_TIMESTAMP WHERE id = {1}", selected_item.SubItems[1].Text, selected_item.SubItems[0].Text);
                 
                 MySqlCommand cmd = new MySqlCommand(sql, con);

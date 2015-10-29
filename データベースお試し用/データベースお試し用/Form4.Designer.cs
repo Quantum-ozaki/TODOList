@@ -38,7 +38,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -60,6 +59,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.csvBtn = new System.Windows.Forms.Button();
             this.cateogoryDialogBtn = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -114,11 +118,15 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.progressBar1);
             this.tabPage3.Controls.Add(this.btnTotal);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.textBox4);
             this.tabPage3.Controls.Add(this.textBox11);
-            this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.listView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -142,7 +150,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 62);
+            this.label6.Location = new System.Drawing.Point(22, 108);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 12);
             this.label6.TabIndex = 31;
@@ -151,7 +159,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(21, 78);
+            this.textBox4.Location = new System.Drawing.Point(21, 126);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(144, 64);
@@ -159,25 +167,16 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(21, 37);
+            this.textBox11.Location = new System.Drawing.Point(75, 19);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(144, 19);
+            this.textBox11.Size = new System.Drawing.Size(70, 19);
             this.textBox11.TabIndex = 27;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(90, 148);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "登録";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(22, 22);
+            this.label7.Location = new System.Drawing.Point(12, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 28;
@@ -382,6 +381,56 @@
             this.cateogoryDialogBtn.Text = "分類管理";
             this.cateogoryDialogBtn.UseVisualStyleBackColor = true;
             this.cateogoryDialogBtn.Click += new System.EventHandler(this.cateogoryDialogBtn_Click);
+            //
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(21, 61);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(124, 26);
+            this.progressBar1.TabIndex = 48;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(149, 24);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(17, 12);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "円";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(22, 44);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 50;
+            this.label11.Text = "予算使用率";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Location = new System.Drawing.Point(150, 74);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(17, 12);
+            this.label12.TabIndex = 51;
+            this.label12.Text = "％";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(88, 97);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(79, 23);
+            this.button3.TabIndex = 52;
+            this.button3.Text = "登録";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form4
             // 
@@ -419,7 +468,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.TabPage tabPage1;
@@ -443,5 +491,10 @@
         private System.Windows.Forms.Button csvBtn;
         private System.Windows.Forms.Button btnTotal;
         private System.Windows.Forms.Button cateogoryDialogBtn;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button3;
     }
 }
