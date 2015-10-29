@@ -177,7 +177,7 @@ namespace データベースお試し用
             // INSERT文出す
             StringBuilder sql = new StringBuilder();
             //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
-            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = " + strCategory + "),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = '" + strCategory + "'),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
