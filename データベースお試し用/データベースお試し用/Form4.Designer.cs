@@ -113,6 +113,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.Controls.Add(this.btnTotal);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.textBox4);
             this.tabPage3.Controls.Add(this.textBox11);
@@ -130,7 +131,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 81);
+            this.label6.Location = new System.Drawing.Point(23, 62);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 12);
             this.label6.TabIndex = 31;
@@ -139,7 +140,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(26, 97);
+            this.textBox4.Location = new System.Drawing.Point(21, 78);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(144, 64);
@@ -147,14 +148,14 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(26, 32);
+            this.textBox11.Location = new System.Drawing.Point(21, 37);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(144, 19);
             this.textBox11.TabIndex = 27;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(95, 167);
+            this.button3.Location = new System.Drawing.Point(90, 148);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 29;
@@ -165,7 +166,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(27, 41);
+            this.label7.Location = new System.Drawing.Point(22, 22);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 28;
@@ -353,7 +354,7 @@
             // 
             // csvBtn
             // 
-            this.csvBtn.Location = new System.Drawing.Point(545, 29);
+            this.csvBtn.Location = new System.Drawing.Point(401, 69);
             this.csvBtn.Name = "csvBtn";
             this.csvBtn.Size = new System.Drawing.Size(119, 23);
             this.csvBtn.TabIndex = 46;
@@ -363,11 +364,11 @@
             // 
             // btnTotal
             // 
-            this.btnTotal.Location = new System.Drawing.Point(359, 68);
+            this.btnTotal.Location = new System.Drawing.Point(21, 200);
             this.btnTotal.Name = "btnTotal";
-            this.btnTotal.Size = new System.Drawing.Size(160, 23);
+            this.btnTotal.Size = new System.Drawing.Size(144, 23);
             this.btnTotal.TabIndex = 48;
-            this.btnTotal.Text = "合計表示テスト";
+            this.btnTotal.Text = "月別集計";
             this.btnTotal.UseVisualStyleBackColor = true;
             this.btnTotal.Click += new System.EventHandler(this.btnTotal_Click);
             // 
@@ -376,7 +377,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
-            this.Controls.Add(this.btnTotal);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);

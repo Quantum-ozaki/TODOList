@@ -23,7 +23,7 @@ namespace データベースお試し用
 
 
             listView3.View = View.Details;
-            listView3.Columns.Add("金額合計");
+            listView3.Columns.Add("月");
             listView3.Columns.Add("金額合計");
 
             listView2.View = View.Details;
@@ -31,11 +31,11 @@ namespace データベースお試し用
 
             listView2.Columns.Add("□", 25, HorizontalAlignment.Left);
             listView2.Columns.Add("重要度", 0, HorizontalAlignment.Left);
-            listView2.Columns.Add("内容", 100, HorizontalAlignment.Left);
+            listView2.Columns.Add("品名", 110, HorizontalAlignment.Left);
             listView2.Columns.Add("分類", 50, HorizontalAlignment.Left);
-            listView2.Columns.Add("金額", 50, HorizontalAlignment.Left);
-            listView2.Columns.Add("日付", 50, HorizontalAlignment.Left);
-            listView2.Columns.Add("備考", 50, HorizontalAlignment.Left);
+            listView2.Columns.Add("金額", 60, HorizontalAlignment.Right);
+            listView2.Columns.Add("日付", 100, HorizontalAlignment.Left);
+            listView2.Columns.Add("備考", 100, HorizontalAlignment.Left);
 
             comboBox1.Items.Add("Ａ");
             comboBox1.Items.Add("Ｂ");
