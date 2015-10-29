@@ -312,8 +312,8 @@ namespace データベースお試し用
             target_item[0].SubItems[6].Text = se.remarks;
           
 
-            string sql = string.Format("UPDATE content SET content = '{0}', category_id = ( SELECT id FROM category WHERE name = '{1}'), price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
 
+            string sql = string.Format("UPDATE content SET content = '{0}', category_id = (SELECT id FROM category WHERE name = '{1}'), price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
               se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
 
             MySqlConnection con = new MySqlConnection();
