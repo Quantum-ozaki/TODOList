@@ -136,72 +136,16 @@ namespace データベースお試し用
             con.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void connectBtn_Click(object sender, EventArgs e)
         {
             //リストビューをリセット
-            foreach (ListViewItem item in this.listView2.Items)
-            {
-                listView2.Items.Remove(item);
-            }
+            listView2.Items.Clear();
+            //foreach (ListViewItem item in this.listView2.Items)
+            //{
+            //    listView2.Items.Remove(item);
+            //}
 
-            //オブジェクト指向パラダイム
-            MySqlConnection con = new MySqlConnection();
-            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            con.ConnectionString = conString;
-
-            try
-            {
-                con.Open();
-                // MessageBox.Show("接続成功");
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-
-            }
-
-            // セレクト文出す
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT * FROM content co JOIN category ca ON co.category_id = ca.id ORDER BY date ASC;");
-
-
-
-            // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            // 結果を表示します。
-            while (reader.Read())
-            {
-
-
-                string id = reader.GetString("id");
-                string importance = reader.GetString("importance");
-                string content = reader.GetString("content");
-                string category_id = reader.GetString("category_id");
-                string category = reader.GetString("name");
-                string price = reader.GetString("price");
-                DateTime date = reader.GetDateTime("date");
-                string remarks = reader.GetString("remarks");
-
-                string strdate = date.ToString("yyyy/MM/dd");
-
-                ListViewItem itemx1 = new ListViewItem();
-                itemx1.Name = id;
-                itemx1.Text = id;
-                itemx1.SubItems.Add(importance);
-                itemx1.SubItems.Add(content);
-                itemx1.SubItems.Add(category);
-                itemx1.SubItems.Add(price);
-                itemx1.SubItems.Add(strdate);
-                itemx1.SubItems.Add(remarks);
-
-
-                listView2.Items.Add(itemx1);
-            }
-
-            //最後にとじる
-            con.Close();
+            FetchMainContents();
         }
 
 
@@ -264,8 +208,8 @@ namespace データベースお試し用
             textBox2.Text = "";
             textBox3.Text = "";
 
-            //接続する
-            button1_Click(sender, e);
+            //リストビューの中身を更新する
+            FetchMainContents();
 
         }
 
@@ -321,8 +265,8 @@ namespace データベースお試し用
             //最後にとじる
             con.Close();
 
-            //接続する
-            button1_Click(sender, e);
+            //リストビューの中身を更新する
+            FetchMainContents();
 
         }
 
@@ -451,48 +395,98 @@ namespace データベースお試し用
             }
 
             //オブジェクト指向パラダイム
-            MySqlConnection con = new MySqlConnection();
-            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            con.ConnectionString = conString;
-
-            try
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
                 con.Open();
-                // MessageBox.Show("接続成功");
+
+                // セレクト文出す
+                //StringBuilder sql = new StringBuilder();
+                //sql.AppendLine("SELECT SUM(price) AS total FROM content");
+                string sql = "SELECT DATE_FORMAT(date, '%Y-%m') as date, SUM(price) AS total FROM content GROUP BY DATE_FORMAT(date, '%Y%m')";
+
+                // よみこむやつ
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                // 結果を表示します。
+                while (reader.Read())
+                {
+                    string date = reader.GetString("date");
+                    string total = reader.GetString("total");
+
+                    ListViewItem itemx2 = new ListViewItem();
+                    itemx2.Text = date;
+                    itemx2.SubItems.Add(total);
+                    listView3.Items.Add(itemx2);
+                }
             }
-            catch (Exception err)
+
+            using(MySqlConnection con2 = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
-                MessageBox.Show(err.Message);
+                con2.Open();
 
+                // セレクト文出す
+                string sql2 = "SELECT * FROM content co JOIN category ca ON co.category_id = ca.id ORDER BY date ASC;";
+
+                // よみこむやつ
+                MySqlCommand cmd2 = new MySqlCommand(sql2, con2);
+                var reader2 = cmd2.ExecuteReader();
+
+                Font f = new Font(FontFamily.GenericSansSerif, 9);
+
+                int total_price = 0;
+                int budget = int.Parse(textBox11.Text);
+                List<ListViewItem> items = new List<ListViewItem>();
+                Color color;
+                // 結果を表示します。
+                while (reader2.Read())
+                {
+                    string id = reader2.GetString("id");
+                    string importance = reader2.GetString("importance");
+                    string content = reader2.GetString("content");
+                    string category_id = reader2.GetString("category_id");
+                    string category = reader2.GetString("name");
+                    int price = reader2.GetInt32("price");
+                    DateTime date = reader2.GetDateTime("date");
+                    string remarks = reader2.GetString("remarks");
+
+                    string strdate = date.ToString("yyyy/MM/dd");
+
+                    var now = DateTime.Now;
+                    if (date.Month == now.Month)
+                    {
+                        total_price += price;
+                        if (total_price > budget)
+                        {
+                            color = Color.Red;
+                        }
+                        else
+                        {
+                            color = Color.Blue;
+                        }
+                    }
+                    else
+                    {
+                        color = Color.Black;
+                    }
+
+                    ListViewItem itemx1 = new ListViewItem();
+                    itemx1.UseItemStyleForSubItems = false;
+                    itemx1.Name = id;
+                    itemx1.Text = id;
+                    itemx1.ToolTipText = "今月の予算を累計でオーバーしている品目は、上から順に赤文字で表示されます";
+                    itemx1.SubItems.Add(importance);
+                    itemx1.SubItems.Add(content);
+                    itemx1.SubItems.Add(category);
+                    itemx1.SubItems.Add(price.ToString(), color, Color.LightGray, f);
+                    itemx1.SubItems.Add(strdate);
+                    itemx1.SubItems.Add(remarks);
+
+                    items.Add(itemx1);
+                }
+
+                UpdateMainContents(items);
             }
-
-            // セレクト文出す
-            StringBuilder sql = new StringBuilder();
-            //sql.AppendLine("SELECT SUM(price) AS total FROM content");
-            sql.AppendLine("SELECT DATE_FORMAT(date, '%Y-%m') as date, SUM(price) AS total FROM content GROUP BY DATE_FORMAT(date, '%Y%m')");
-
-            // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            // 結果を表示します。
-            while (reader.Read())
-            {
-                string date = reader.GetString("date");
-                string total = reader.GetString("total");
-
-                ListViewItem itemx2 = new ListViewItem();
-                itemx2.Text = date;
-                itemx2.SubItems.Add(total);
-                listView3.Items.Add(itemx2);
-            }
-
-         
-
-
-
-            //最後にとじる
-            con.Close();
 
 
         }
@@ -663,6 +657,72 @@ namespace データベースお試し用
 
             //最後にとじる
             con.Close();
+        }
+
+        private void FetchMainContents()
+        {
+            //オブジェクト指向パラダイム
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                // セレクト文出す
+                string sql = "SELECT * FROM content co JOIN category ca ON co.category_id = ca.id ORDER BY date ASC;";
+
+                // よみこむやつ
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                Font f = new Font(FontFamily.GenericSansSerif, 9);
+                var items = new List<ListViewItem>();
+                // 結果を表示します。
+                while (reader.Read())
+                {
+
+
+                    string id = reader.GetString("id");
+                    string importance = reader.GetString("importance");
+                    string content = reader.GetString("content");
+                    string category_id = reader.GetString("category_id");
+                    string category = reader.GetString("name");
+                    string price = reader.GetString("price");
+                    DateTime date = reader.GetDateTime("date");
+                    string remarks = reader.GetString("remarks");
+
+                    string strdate = date.ToString("yyyy/MM/dd");
+
+                    ListViewItem itemx1 = new ListViewItem();
+                    itemx1.UseItemStyleForSubItems = false;
+                    itemx1.Name = id;
+                    itemx1.Text = id;
+                    itemx1.SubItems.Add(importance);
+                    itemx1.SubItems.Add(content);
+                    itemx1.SubItems.Add(category);
+                    itemx1.SubItems.Add(price, Color.Black, Color.LightGray, f);
+                    itemx1.SubItems.Add(strdate);
+                    itemx1.SubItems.Add(remarks);
+
+                    items.Add(itemx1);
+                }
+
+                UpdateMainContents(items);
+            }
+        }
+
+        private void UpdateMainContents(List<ListViewItem> items)
+        {
+            listView2.Items.Clear();
+
+            foreach (var item in items)
+            {
+                listView2.Items.Add(item);
+            }
+            //foreach (ListViewItem item in this.listView2.Items)
+            //{
+            //    listView2.Items.Remove(item);
+            //}
+
+            
         }
     }
 }
