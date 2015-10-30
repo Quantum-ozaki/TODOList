@@ -40,12 +40,19 @@ namespace データベースお試し用
             }
         }
 
-        public string importance { get; internal set; }
-        public string content { get; internal set; }
-        public string category_id { get; internal set; }
-        public string price { get; internal set; }
-        public string date { get; internal set; }
-        public string remarks { get; internal set; }
+        // このようにプロパティを使用する場合は単語の先頭大文字の名前をつけるようにしましょう
+        public string Importance { get; internal set; }
+        //public string importance { get; internal set; }
+        public string Content { get; internal set; }
+        //public string content { get; internal set; }
+        public string CategoryId { get; internal set; }
+        //public string catgory_id { get; internal set; }
+        public string Price { get; internal set; }
+        //public string price { get; internal set; }
+        public string Date { get; internal set; }
+        //public string date { get; internal set; }
+        public string Remarks { get; internal set; }
+        //public string remarks { get; internal set; }
 
         private void button2_Click(object sender, EventArgs e)
         {
