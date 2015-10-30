@@ -133,6 +133,11 @@ namespace データベースお試し用
 
         }
 
+        public void Budget()
+        {
+
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             //オブジェクト指向パラダイム
