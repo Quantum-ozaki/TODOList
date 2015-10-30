@@ -274,7 +274,7 @@ namespace データベースお試し用
 
                 //----3.詰め込んだ物を渡す
 
-                Form3 main = new Form3(cn, this);
+                Form3 main = new Form3(cn, this, categories);
 
                 //----4.渡した状態で画面起動
                 main.ShowDialog(this);
@@ -355,7 +355,7 @@ namespace データベースお試し用
 
             using (CSVWriter writer = new CSVWriter(save_path))
             {
-                writer.WriteHeader("ID, importance, content, category_id, price, date, remarks");
+                writer.WriteHeader("ID,importance,content,category,price,date,remarks");
                 foreach (var item in this.listView2.Items)
                 {
                     writer.Write((ListViewItem)item);

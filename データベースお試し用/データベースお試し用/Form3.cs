@@ -16,7 +16,7 @@ namespace データベースお試し用
         private Correction correction;
         private Form4 form;
 
-        public Form3(Correction cn, Form4 form)
+        public Form3(Correction cn, Form4 form, List<Category> categories)
         {
             InitializeComponent();
             this.form = form;
@@ -33,6 +33,11 @@ namespace データベースお試し用
             textBox1.Text = cn.content;
             textBox2.Text = cn.price;
             textBox3.Text = cn.remarks;
+
+            foreach (var category in categories)
+            {
+                comboBox1.Items.Add(category.Name);
+            }
         }
 
         public string importance { get; internal set; }
