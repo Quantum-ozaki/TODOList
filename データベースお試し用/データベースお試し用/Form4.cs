@@ -17,6 +17,7 @@ namespace データベースお試し用
     {
         private List<Category> categories;
 
+
         public Form4()
         {
             InitializeComponent();
@@ -51,12 +52,88 @@ namespace データベースお試し用
             int iMonth = dtNow.Month;
             ThismonthLbl.Text = iMonth.ToString() + "月の予算";
 
-
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
+            //予算表示
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT * FROM goal");
 
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+
+                
+                string id = reader.GetString("id");
+                string price = reader.GetString("price");
+                string comment = reader.GetString("comment");
+                MessageBox.Show(id+price+comment);
+                textBox11.Text = price;
+                CommenTxt.Text = comment;
+            }
+
+            //最後にとじる
+            con.Close();
+        }
+
+        public void Budgetcomment()
+        {
+            //予算表示
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT * FROM goal");
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+
+
+                string id = reader.GetString("id");
+                string price = reader.GetString("price");
+                string comment = reader.GetString("comment");
+                MessageBox.Show(id + price + comment);
+                textBox11.Text = price;
+                CommenTxt.Text = comment;
+            }
+
+            //最後にとじる
+            con.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -261,14 +338,14 @@ namespace データベースお試し用
                 //----2.値を詰め込む
 
                 //cn.id = this.savedidList[this.listView2.CheckedItems[0].Index];
-                cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
+                cn.Id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
                 // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
-                cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
+                cn.Content = this.listView2.CheckedItems[0].SubItems[2].Text;
                 //cn.category_id = int.Parse(this.listView2.CheckedItems[3].SubItems[0].Text);
-                cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
-                cn.price = this.listView2.CheckedItems[0].SubItems[4].Text;
-                cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
-                cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
+                cn.Category = this.listView2.CheckedItems[0].SubItems[3].Text;
+                cn.Price = this.listView2.CheckedItems[0].SubItems[4].Text;
+                cn.Date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
+                cn.Remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
 
                 //MessageBox.Show(cn.importance);
 
@@ -295,21 +372,21 @@ namespace データベースお試し用
 
 
 
-            string id_string = se.id.ToString();
+            string id_string = se.Id.ToString();
             var target_item = this.listView2.Items.Find(id_string, false);
 
 
-            target_item[0].SubItems[0].Text = se.id.ToString();
-            target_item[0].SubItems[2].Text = se.content;
-            target_item[0].SubItems[3].Text = se.category;
-            target_item[0].SubItems[4].Text = se.price;
-            target_item[0].SubItems[5].Text = se.date.ToString("yyyy/MM/dd");
-            target_item[0].SubItems[6].Text = se.remarks;
+            target_item[0].SubItems[0].Text = se.Id.ToString();
+            target_item[0].SubItems[2].Text = se.Content;
+            target_item[0].SubItems[3].Text = se.Category;
+            target_item[0].SubItems[4].Text = se.Price;
+            target_item[0].SubItems[5].Text = se.Date.ToString("yyyy/MM/dd");
+            target_item[0].SubItems[6].Text = se.Remarks;
 
 
 
             string sql = string.Format("UPDATE content SET content = '{0}', category_id = (SELECT id FROM category WHERE name = '{1}'), price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
-              se.content, se.category, se.price, se.date.ToString("yyyy-MM-dd hh:mm:ss"), se.remarks, se.id);
+              se.Content, se.Category, se.Price, se.Date.ToString("yyyy-MM-dd hh:mm:ss"), se.Remarks, se.Id);
 
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
@@ -422,6 +499,8 @@ namespace データベースお試し用
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Budgetcomment();
+
             try
             {
                 //オブジェクト指向パラダイム
@@ -516,7 +595,7 @@ namespace データベースお試し用
             {
                 con.Open();
 
-                string sql = "SELECT id, name FROM category;";
+                string sql = "SELECT id, name FROM category WHERE id = '1'";
 
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 var reader = cmd.ExecuteReader();
@@ -545,6 +624,45 @@ namespace データベースお試し用
                 listView2.SelectedItems[0].UseItemStyleForSubItems = false;
                 listView2.SelectedItems[0].BackColor = Color.Red;
             }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            //予算表示
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT id, price, comment FROM goal");
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            
+            // 結果を表示します。
+            while (reader.Read())
+            {
+                string id = reader.GetString("id");
+                string price = reader.GetString("price");
+                string comment = reader.GetString("comment");
+                MessageBox.Show(id);
+                textBox11.Text = price;
+                CommenTxt.Text = comment;
+            }
+
+            //最後にとじる
+            con.Close();
         }
     }
 }

@@ -62,12 +62,12 @@ namespace データベースお試し用
             InitializeComponent();
             this.correction = cn;
 
-            string strid = cn.id.ToString();
+            string strid = cn.Id.ToString();
 
             label1.Text = strid;
-            comboBoxS.Text = cn.importance;
-            textBoxS.Text = cn.content;
-            textBoxS2.Text = cn.remarks;
+            comboBoxS.Text = cn.Importance;
+            textBoxS.Text = cn.Content;
+            textBoxS2.Text = cn.Remarks;
         }
 
 
@@ -94,12 +94,12 @@ namespace データベースお試し用
 
             //----2.値を詰め込む
 
-            string strid = se.id.ToString();
-            se.id = int.Parse(this.label1.Text);
-            se.importance = this.comboBoxS.Text;
-            se.content = this.textBoxS.Text;
-            se.remarks = this.textBoxS2.Text;
-            se.date = this.correction.date;
+            string strid = se.Id.ToString();
+            se.Id = int.Parse(this.label1.Text);
+            se.Importance = this.comboBoxS.Text;
+            se.Content = this.textBoxS.Text;
+            se.Remarks = this.textBoxS2.Text;
+            se.Date = this.correction.Date;
 
             form.SetcontentItems(se);
 

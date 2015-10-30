@@ -61,11 +61,11 @@ namespace データベースお試し用
             this.correction = se;
 
 
-            string strid = se.id.ToString();
+            string strid = se.Id.ToString();
             label10.Text = strid;
-            label11.Text = se.importance;
-            label12.Text = se.content;
-            label13.Text = se.remarks;
+            label11.Text = se.Importance;
+            label12.Text = se.Content;
+            label13.Text = se.Remarks;
 
 
         }
@@ -427,11 +427,11 @@ namespace データベースお試し用
             //----2.値を詰め込む
 
             //cn.id = this.savedidList[this.listView1.CheckedItems[0].Index];
-            cn.id = int.Parse(this.listView1.CheckedItems[0].SubItems[0].Text);
-            cn.importance = this.listView1.CheckedItems[0].SubItems[1].Text;
-            cn.content = this.listView1.CheckedItems[0].SubItems[2].Text;
-            cn.remarks = this.listView1.CheckedItems[0].SubItems[3].Text;
-            cn.date = DateTime.Parse(this.listView1.CheckedItems[0].SubItems[4].Text);
+            cn.Id = int.Parse(this.listView1.CheckedItems[0].SubItems[0].Text);
+            cn.Importance = this.listView1.CheckedItems[0].SubItems[1].Text;
+            cn.Content = this.listView1.CheckedItems[0].SubItems[2].Text;
+            cn.Remarks = this.listView1.CheckedItems[0].SubItems[3].Text;
+            cn.Date = DateTime.Parse(this.listView1.CheckedItems[0].SubItems[4].Text);
 
 
             //MessageBox.Show(cn.importance);
@@ -452,11 +452,11 @@ namespace データベースお試し用
                 // プロパティに値を設定して子フォームを開く
 
                 // 子フォームで設定されたプロパティから値を反映する
-                string strid = se.id.ToString();
+                string strid = se.Id.ToString();
                 this.label10.Text = strid;
-                this.label11.Text = se.importance;
-                this.label12.Text = se.content;
-                this.label13.Text = se.remarks;
+                this.label11.Text = se.Importance;
+                this.label12.Text = se.Content;
+                this.label13.Text = se.Remarks;
 
                 //オブジェクト指向パラダイム
                 MySqlConnection con = new MySqlConnection();
@@ -789,15 +789,15 @@ namespace データベースお試し用
 
         public void SetcontentItems(Correction correction)
         {
-            string id_string = correction.id.ToString();
+            string id_string = correction.Id.ToString();
             var target_item = this.listView1.Items.Find(id_string, false);
-            target_item[0].SubItems[0].Text = correction.importance;
-            target_item[0].SubItems[1].Text = correction.content;
-            target_item[0].SubItems[2].Text = correction.remarks;
-            target_item[0].SubItems[3].Text = correction.date.ToString("yyyy/MM/dd (ddd)");
+            target_item[0].SubItems[0].Text = correction.Importance;
+            target_item[0].SubItems[1].Text = correction.Content;
+            target_item[0].SubItems[2].Text = correction.Remarks;
+            target_item[0].SubItems[3].Text = correction.Date.ToString("yyyy/MM/dd (ddd)");
 
             string sql = string.Format("UPdate content SET importance = '{0}', content = '{1}', remarks = '{2}', date = '{3}' WHERE id = '{4}'",
-                correction.importance, correction.content, correction.remarks, correction.date.ToString("yyyy-MM-dd hh:mm:ss"), correction.id);
+                correction.Importance, correction.Content, correction.Remarks, correction.Date.ToString("yyyy-MM-dd hh:mm:ss"), correction.Id);
 
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;

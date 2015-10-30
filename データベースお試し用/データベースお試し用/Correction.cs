@@ -8,42 +8,44 @@ namespace データベースお試し用
 {
     public class Correction
     {
-        public int id
+        // プロパティは単語の先頭大文字にしましょう
+        public int Id
         {
             get;
             set;
             //id, importance, content, Remarks, dated
         }
-        public string importance
-        {
-            get;
-            set;
-        }
-        public string content
-        {
-            get;
-            set;
-        }
-        public string remarks
+
+        public string Importance
         {
             get;
             set;
         }
 
-        public string category
+        public string Content
+        {
+            get;
+            set;
+        }
+        public string Remarks
         {
             get;
             set;
         }
 
-        public string price
+        public string Category
         {
             get;
             set;
         }
 
-        public DateTime date
+        public string Price
+        {
+            get;
+            set;
+        }
 
+        public DateTime Date
         {
             get;
             set;
@@ -69,11 +71,11 @@ namespace データベースお試し用
 
         public Correction(int id, string importance, string content, string remarks, DateTime date)
         {
-            this.id = id;
-            this.importance = importance;
-            this.content = content;
-            this.remarks = remarks;
-            this.date = date;
+            this.Id = id;
+            this.Importance = importance;
+            this.Content = content;
+            this.Remarks = remarks;
+            this.Date = date;
 
 
         }

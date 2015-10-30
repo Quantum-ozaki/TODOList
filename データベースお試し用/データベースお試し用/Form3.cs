@@ -24,15 +24,15 @@ namespace データベースお試し用
 
             this.correction = cn;
 
-            string strid = cn.id.ToString();
-            string strData = cn.date.ToString();
+            string strid = cn.Id.ToString();
+            string strData = cn.Date.ToString();
 
             dateTimePicker2.Text = strData;
             label6.Text = strid;
-            comboBox1.Text = cn.category;
-            textBox1.Text = cn.content;
-            textBox2.Text = cn.price;
-            textBox3.Text = cn.remarks;
+            comboBox1.Text = cn.Category;
+            textBox1.Text = cn.Content;
+            textBox2.Text = cn.Price;
+            textBox3.Text = cn.Remarks;
 
             foreach (var category in categories)
             {
@@ -63,15 +63,15 @@ namespace データベースお試し用
 
             //----2.値を詰め込む
 
-            string strid = se.id.ToString();
-            se.id = int.Parse(this.label6.Text);
-            se.category = this.comboBox1.Text;
-            se.content = this.textBox1.Text;
-            se.price = this.textBox2.Text;
-            se.remarks = this.textBox3.Text;
+            string strid = se.Id.ToString();
+            se.Id = int.Parse(this.label6.Text);
+            se.Category = this.comboBox1.Text;
+            se.Content = this.textBox1.Text;
+            se.Price = this.textBox2.Text;
+            se.Remarks = this.textBox3.Text;
 
             string strData = this.dateTimePicker2.Text;
-            se.date = DateTime.Parse(strData);
+            se.Date = DateTime.Parse(strData);
 
 
             form.SetcontentItems(se);
