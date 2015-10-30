@@ -37,40 +37,12 @@ namespace データベースお試し用
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*if (!last_selected_index.HasValue)
-            {
-                last_selected_index = listView1.SelectedIndices[0];
-                return;
-            }
-
-            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
-            {
-                con.Open();
-
-                var selected_item = listView1.Items[last_selected_index.Value];
-                string sql = string.Format("UPDATE category SET name = '{0}', create_user_id = 1, created_date = CURRENT_TIMESTAMP WHERE id = {1}", selected_item.SubItems[1].Text, selected_item.SubItems[0].Text);
-
-                MySqlCommand cmd = new MySqlCommand(sql, con);
-                cmd.ExecuteNonQuery();
-            }*/
-
-            //UpdateRows();
-
             if (listView1.SelectedIndices.Count > 0 && listView1.SelectedIndices[0] > 0)
             {
                 int selected_index = listView1.SelectedIndices[0];
                 newCategoryName.Text = listView1.SelectedItems[0].SubItems[1].Text;
                 selected_item = categories[selected_index];
             }
-
-            /*if (listView1.SelectedIndices.Count > 0 && listView1.SelectedIndices[0] > 0)
-            {
-                last_selected_index = listView1.SelectedIndices[0];
-            }
-            else
-            {
-                last_selected_index = null;
-            }*/
         }
 
         private void addBtn_Click(object sender, EventArgs e)
