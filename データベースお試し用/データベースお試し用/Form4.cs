@@ -84,7 +84,7 @@ namespace データベースお試し用
 
             // セレクト文出す
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT * FROM content co JOIN category ca ON co.category_id = ca.id;");
+            sql.AppendLine("SELECT * FROM content co JOIN category ca ON co.category_id = ca.id ORDER BY date ASC;");
 
 
 
@@ -246,34 +246,41 @@ namespace データベースお試し用
         private void buttonChange_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                //----1.データを作る為にリストビューから値を取得
 
-            //----1.データを作る為にリストビューから値を取得
+                Correction cn = new Correction();
 
-            Correction cn = new Correction();
+                //----2.値を詰め込む
 
-            //----2.値を詰め込む
+                //cn.id = this.savedidList[this.listView2.CheckedItems[0].Index];
+                cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
+                // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
+                cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
+                //cn.category_id = int.Parse(this.listView2.CheckedItems[3].SubItems[0].Text);
+                cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
+                cn.price = this.listView2.CheckedItems[0].SubItems[4].Text;
+                cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
+                cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
 
-            //cn.id = this.savedidList[this.listView2.CheckedItems[0].Index];
-            cn.id = int.Parse(this.listView2.CheckedItems[0].SubItems[0].Text);
-            // cn.importance = this.listView2.CheckedItems[0].SubItems[1].Text;
-            cn.content = this.listView2.CheckedItems[0].SubItems[2].Text;
-            //cn.category_id = int.Parse(this.listView2.CheckedItems[3].SubItems[0].Text);
-            cn.category = this.listView2.CheckedItems[0].SubItems[3].Text;
-            cn.price = this.listView2.CheckedItems[0].SubItems[4].Text;
-            cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
-            cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
+                //MessageBox.Show(cn.importance);
 
+                //----3.詰め込んだ物を渡す
 
-            //MessageBox.Show(cn.importance);
+                Form3 main = new Form3(cn, this);
 
-            //----3.詰め込んだ物を渡す
+                //----4.渡した状態で画面起動
+                main.ShowDialog(this);
+                main.Dispose();
+                //this.dataLoad();
 
-            Form3 main = new Form3(cn, this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-            //----4.渡した状態で画面起動
-            main.ShowDialog(this);
-            main.Dispose();
-            //this.dataLoad();
 
         }
 
@@ -409,58 +416,76 @@ namespace データベースお試し用
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            //オブジェクト指向パラダイム
-            MySqlConnection con = new MySqlConnection();
-            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            con.ConnectionString = conString;
-
             try
             {
-                con.Open();
-                // MessageBox.Show("接続成功");
+                //オブジェクト指向パラダイム
+                MySqlConnection con = new MySqlConnection();
+                string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+                con.ConnectionString = conString;
+
+                try
+                {
+                    con.Open();
+                    // MessageBox.Show("接続成功");
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+
+                }
+
+
+                // 必要な変数を宣言する
+                DateTime dtNow = DateTime.Now;
+                // 月 (Month) を取得する
+                int iMonth = dtNow.Month;
+                int iYear = dtNow.Year;
+
+                // セレクト文出す
+                StringBuilder sql = new StringBuilder();
+                //sql.AppendLine("SELECT SUM(price) AS total FROM content");
+                sql.AppendLine("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m')= '" + iYear + iMonth + "'");
+
+                // よみこむやつ
+                MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                // 結果を表示します。
+                while (reader.Read())
+                {
+                    string total = reader.GetString("total");
+
+                    //MessageBox.Show(total);
+                    double iBudget = double.Parse(textBox11.Text);
+                    double iTotal = double.Parse(total);
+                    double iRsult = iTotal / iBudget * 100;
+                    //double iRsult = int Rsult;
+                    int Rsult = (int)iRsult;
+
+                    if (Rsult <= 100)
+                    {
+                        progressBar1.Minimum = 0;
+                        progressBar1.Maximum = 100;
+                        progressBar1.Value = Rsult;
+                        label12.Text = Rsult.ToString() + "%";
+                    }
+
+                    else if (Rsult > 100)
+                    {
+                        progressBar1.Minimum = 0;
+                        progressBar1.Maximum = 100;
+                        progressBar1.Value = 100;
+                        label12.Text = Rsult.ToString() + "%";
+                        MessageBox.Show("予算額を超えました！");
+                        //Color foreColor = Color.Red;
+                    }
+
+                }
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                MessageBox.Show(err.Message);
 
             }
-
-
-            // 必要な変数を宣言する
-            DateTime dtNow = DateTime.Now;
-            // 月 (Month) を取得する
-            int iMonth = dtNow.Month;
-            int iYear = dtNow.Year;
-
-            // セレクト文出す
-            StringBuilder sql = new StringBuilder();
-            //sql.AppendLine("SELECT SUM(price) AS total FROM content");
-            sql.AppendLine("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m')= '" + iYear + iMonth + "'");
-
-            // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            // 結果を表示します。
-            while (reader.Read())
-            {
-                string total = reader.GetString("total");
-            
-                //MessageBox.Show(total);
-                double iBudget = double.Parse(textBox11.Text);
-                double iTotal = double.Parse(total);
-                double iRsult = iTotal / iBudget * 100;
-                //double iRsult = int Rsult;
-                int Rsult = (int)iRsult;
-                progressBar1.Minimum = 0;
-                progressBar1.Maximum = 100;
-                progressBar1.Value = Rsult;
-                label12.Text = Rsult.ToString() + "%";
-
-
-            }
-
 
         }
 
@@ -494,6 +519,16 @@ namespace データベースお試し用
                     comboBox1.Items.Add(tmp.Name);
                 }
             }
+        }
+
+        private void buttonEnd_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Color foreColor = Color.Red;
         }
     }
 }

@@ -77,6 +77,7 @@
             this.buttonEnd.TabIndex = 40;
             this.buttonEnd.Text = "終了";
             this.buttonEnd.UseVisualStyleBackColor = true;
+            this.buttonEnd.Click += new System.EventHandler(this.buttonEnd_Click);
             // 
             // buttonDelete
             // 
@@ -139,9 +140,9 @@
             // 
             // btnTotal
             // 
-            this.btnTotal.Location = new System.Drawing.Point(21, 200);
+            this.btnTotal.Location = new System.Drawing.Point(24, 195);
             this.btnTotal.Name = "btnTotal";
-            this.btnTotal.Size = new System.Drawing.Size(144, 23);
+            this.btnTotal.Size = new System.Drawing.Size(141, 23);
             this.btnTotal.TabIndex = 48;
             this.btnTotal.Text = "月別集計";
             this.btnTotal.UseVisualStyleBackColor = true;
@@ -150,38 +151,38 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 108);
+            this.label6.Location = new System.Drawing.Point(22, 97);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 12);
             this.label6.TabIndex = 31;
             this.label6.Text = "コメント";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(21, 126);
+            this.textBox4.Location = new System.Drawing.Point(27, 114);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(144, 64);
+            this.textBox4.Size = new System.Drawing.Size(138, 45);
             this.textBox4.TabIndex = 30;
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(75, 19);
+            this.textBox11.Location = new System.Drawing.Point(85, 22);
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(70, 19);
+            this.textBox11.Size = new System.Drawing.Size(66, 19);
             this.textBox11.TabIndex = 27;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(12, 24);
+            this.label7.Location = new System.Drawing.Point(22, 25);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.Size = new System.Drawing.Size(63, 12);
             this.label7.TabIndex = 28;
-            this.label7.Text = "　月の予算";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label7.Text = "00月の予算";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // listView3
             // 
@@ -333,6 +334,8 @@
             this.listView2.Size = new System.Drawing.Size(471, 234);
             this.listView2.TabIndex = 27;
             this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.SelectedIndexChanged += new System.EventHandler(this.listView2_SelectedIndexChanged);
+            this.listView2.Click += new System.EventHandler(this.btnTotal_Click);
             // 
             // tabControl1
             // 
@@ -356,7 +359,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("メイリオ", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(17, 43);
+            this.label8.Location = new System.Drawing.Point(17, 39);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(126, 28);
             this.label8.TabIndex = 45;
@@ -384,7 +387,7 @@
             //
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(21, 61);
+            this.progressBar1.Location = new System.Drawing.Point(27, 64);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(124, 26);
             this.progressBar1.TabIndex = 48;
@@ -393,7 +396,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(149, 24);
+            this.label10.Location = new System.Drawing.Point(154, 26);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 12);
             this.label10.TabIndex = 49;
@@ -404,27 +407,27 @@
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(22, 44);
+            this.label11.Location = new System.Drawing.Point(22, 48);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(65, 12);
             this.label11.TabIndex = 50;
             this.label11.Text = "予算使用率";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(150, 74);
+            this.label12.Location = new System.Drawing.Point(152, 77);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(17, 12);
+            this.label12.Size = new System.Drawing.Size(29, 12);
             this.label12.TabIndex = 51;
-            this.label12.Text = "％";
+            this.label12.Text = "00％";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(88, 97);
+            this.button3.Location = new System.Drawing.Point(86, 166);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(79, 23);
             this.button3.TabIndex = 52;
@@ -445,6 +448,7 @@
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.textBox10);
+            this.MaximizeBox = false;
             this.Name = "Form4";
             this.Text = "Form4";
             this.Load += new System.EventHandler(this.Form4_Load);
