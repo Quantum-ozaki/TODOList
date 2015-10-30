@@ -655,7 +655,8 @@ namespace データベースお試し用
             {
                 string id = reader.GetString("id");
                 string price = reader.GetString("price");
-                string comment = reader.GetString("comment");
+                string comment = reader.GetString("comment")
+                    ;
                 MessageBox.Show(id);
                 textBox11.Text = price;
                 CommenTxt.Text = comment;
