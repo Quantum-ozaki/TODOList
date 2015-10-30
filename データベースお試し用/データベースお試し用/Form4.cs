@@ -400,6 +400,11 @@ namespace データベースお試し用
 
                 Font f = new Font(FontFamily.GenericSansSerif, 9);
 
+                if (!textBox11.Text.Any())
+                {
+                    return;
+                }
+
                 int total_price = 0;
                 int budget = int.Parse(textBox11.Text);
                 List<ListViewItem> items = new List<ListViewItem>();
@@ -564,7 +569,7 @@ namespace データベースお試し用
             {
                 con.Open();
 
-                string sql = "SELECT id, name FROM category WHERE id = '1'";
+                string sql = "SELECT id, name FROM category";
 
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 var reader = cmd.ExecuteReader();
