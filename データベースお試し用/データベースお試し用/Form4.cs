@@ -30,6 +30,7 @@ namespace データベースお試し用
 
             listView2.View = View.Details;
             listView2.CheckBoxes = true;
+            listView2.FullRowSelect = true;
 
             listView2.Columns.Add("□", 25, HorizontalAlignment.Left);
             listView2.Columns.Add("重要度", 0, HorizontalAlignment.Left);
@@ -458,24 +459,26 @@ namespace データベースお試し用
                     //MessageBox.Show(total);
                     double iBudget = double.Parse(textBox11.Text);
                     double iTotal = double.Parse(total);
-                    double iRsult = iTotal / iBudget * 100;
+                    double iResult = iTotal / iBudget * 100;
                     //double iRsult = int Rsult;
-                    int Rsult = (int)iRsult;
+                    int Result = (int)iResult;
 
-                    if (Rsult <= 100)
+                    if (Result <= 100)
                     {
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = 100;
-                        progressBar1.Value = Rsult;
-                        PercentageLbl.Text = Rsult.ToString() + "%";
+
+                        progressBar1.Value = Result;
+                        PercentageLbl.Text = Result.ToString() + "%";
                     }
 
-                    else if (Rsult > 100)
+                    else if (Result > 100)
                     {
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = 100;
                         progressBar1.Value = 100;
-                        PercentageLbl.Text = Rsult.ToString() + "%";
+
+                        PercentageLbl.Text = Result.ToString() + "%";
                         MessageBox.Show("予算額を超えました！");
                         //Color foreColor = Color.Red;
                     }
@@ -489,7 +492,7 @@ namespace データベースお試し用
 
         }
 
-        private void cateogoryDialogBtn_Click(object sender, EventArgs e)
+        private void categoryDialogBtn_Click(object sender, EventArgs e)
         {
             using (var dialog = new CategoryDialog())
             {
@@ -531,6 +534,12 @@ namespace データベースお試し用
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
 
+            if (listView2.SelectedIndices.Count > 0 && listView2.SelectedIndices[0] > 0)
+            {
+                // 下記のように記述すると、コントロールの色を変更できます
+                listView2.SelectedItems[0].UseItemStyleForSubItems = false;
+                listView2.SelectedItems[0].BackColor = Color.Red;
+            }
         }
     }
 }

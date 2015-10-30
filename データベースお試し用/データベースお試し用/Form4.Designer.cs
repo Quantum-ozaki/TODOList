@@ -38,6 +38,7 @@
             this.PercentageLbl = new System.Windows.Forms.Label();
             this.UserateLbl = new System.Windows.Forms.Label();
             this.MoneyLbl = new System.Windows.Forms.Label();
+
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnTotal = new System.Windows.Forms.Button();
             this.CommentLbl = new System.Windows.Forms.Label();
@@ -63,7 +64,9 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.label8 = new System.Windows.Forms.Label();
             this.csvBtn = new System.Windows.Forms.Button();
-            this.cateogoryDialogBtn = new System.Windows.Forms.Button();
+
+            this.categoryDialogBtn = new System.Windows.Forms.Button();
+
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -426,22 +429,23 @@
             this.csvBtn.UseVisualStyleBackColor = true;
             this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
-            // cateogoryDialogBtn
+
+            // categoryDialogBtn
             // 
-            this.cateogoryDialogBtn.Location = new System.Drawing.Point(484, 37);
-            this.cateogoryDialogBtn.Name = "cateogoryDialogBtn";
-            this.cateogoryDialogBtn.Size = new System.Drawing.Size(156, 26);
-            this.cateogoryDialogBtn.TabIndex = 48;
-            this.cateogoryDialogBtn.Text = "分類管理";
-            this.cateogoryDialogBtn.UseVisualStyleBackColor = true;
-            this.cateogoryDialogBtn.Click += new System.EventHandler(this.cateogoryDialogBtn_Click);
+            this.categoryDialogBtn.Location = new System.Drawing.Point(484, 37);
+            this.categoryDialogBtn.Name = "categoryDialogBtn";
+            this.categoryDialogBtn.Size = new System.Drawing.Size(156, 26);
+            this.categoryDialogBtn.TabIndex = 48;
+            this.categoryDialogBtn.Text = "分類管理";
+            this.categoryDialogBtn.UseVisualStyleBackColor = true;
+            this.categoryDialogBtn.Click += new System.EventHandler(this.categoryDialogBtn_Click);
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
-            this.Controls.Add(this.cateogoryDialogBtn);
+            this.Controls.Add(this.categoryDialogBtn);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);
@@ -495,8 +499,10 @@
 
         private System.Windows.Forms.Button csvBtn;
         private System.Windows.Forms.Button btnTotal;
-        private System.Windows.Forms.Button cateogoryDialogBtn;
+
+        private System.Windows.Forms.Button categoryDialogBtn;
         private System.Windows.Forms.Label MoneyLbl;
+
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label PercentageLbl;
         private System.Windows.Forms.Label UserateLbl;
