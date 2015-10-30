@@ -34,16 +34,16 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.BudgetBtn = new System.Windows.Forms.Button();
+            this.PercentageLbl = new System.Windows.Forms.Label();
+            this.UserateLbl = new System.Windows.Forms.Label();
+            this.MoneyLbl = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnTotal = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.CommentLbl = new System.Windows.Forms.Label();
+            this.CommenTxt = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.ThismonthLbl = new System.Windows.Forms.Label();
             this.listView3 = new System.Windows.Forms.ListView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,6 +63,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.label8 = new System.Windows.Forms.Label();
             this.csvBtn = new System.Windows.Forms.Button();
+            this.cateogoryDialogBtn = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -118,16 +119,16 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.BudgetBtn);
+            this.tabPage3.Controls.Add(this.PercentageLbl);
+            this.tabPage3.Controls.Add(this.UserateLbl);
+            this.tabPage3.Controls.Add(this.MoneyLbl);
             this.tabPage3.Controls.Add(this.progressBar1);
             this.tabPage3.Controls.Add(this.btnTotal);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.textBox4);
+            this.tabPage3.Controls.Add(this.CommentLbl);
+            this.tabPage3.Controls.Add(this.CommenTxt);
             this.tabPage3.Controls.Add(this.textBox11);
-            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.ThismonthLbl);
             this.tabPage3.Controls.Add(this.listView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -137,48 +138,48 @@
             this.tabPage3.Text = "集計表示";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
-            // button3
+            // BudgetBtn
             // 
-            this.button3.Location = new System.Drawing.Point(86, 166);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 23);
-            this.button3.TabIndex = 52;
-            this.button3.Text = "登録";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BudgetBtn.Location = new System.Drawing.Point(86, 166);
+            this.BudgetBtn.Name = "BudgetBtn";
+            this.BudgetBtn.Size = new System.Drawing.Size(79, 23);
+            this.BudgetBtn.TabIndex = 52;
+            this.BudgetBtn.Text = "登録";
+            this.BudgetBtn.UseVisualStyleBackColor = true;
+            this.BudgetBtn.Click += new System.EventHandler(this.button3_Click);
             // 
-            // label12
+            // PercentageLbl
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(152, 77);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(29, 12);
-            this.label12.TabIndex = 51;
-            this.label12.Text = "00％";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.PercentageLbl.AutoSize = true;
+            this.PercentageLbl.BackColor = System.Drawing.Color.Transparent;
+            this.PercentageLbl.Location = new System.Drawing.Point(152, 77);
+            this.PercentageLbl.Name = "PercentageLbl";
+            this.PercentageLbl.Size = new System.Drawing.Size(29, 12);
+            this.PercentageLbl.TabIndex = 51;
+            this.PercentageLbl.Text = "00％";
+            this.PercentageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label11
+            // UserateLbl
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(22, 48);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 50;
-            this.label11.Text = "予算使用率";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UserateLbl.AutoSize = true;
+            this.UserateLbl.BackColor = System.Drawing.Color.Transparent;
+            this.UserateLbl.Location = new System.Drawing.Point(22, 48);
+            this.UserateLbl.Name = "UserateLbl";
+            this.UserateLbl.Size = new System.Drawing.Size(65, 12);
+            this.UserateLbl.TabIndex = 50;
+            this.UserateLbl.Text = "予算使用率";
+            this.UserateLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label10
+            // MoneyLbl
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(154, 26);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(17, 12);
-            this.label10.TabIndex = 49;
-            this.label10.Text = "円";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MoneyLbl.AutoSize = true;
+            this.MoneyLbl.BackColor = System.Drawing.Color.Transparent;
+            this.MoneyLbl.Location = new System.Drawing.Point(154, 26);
+            this.MoneyLbl.Name = "MoneyLbl";
+            this.MoneyLbl.Size = new System.Drawing.Size(17, 12);
+            this.MoneyLbl.TabIndex = 49;
+            this.MoneyLbl.Text = "円";
+            this.MoneyLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // progressBar1
             // 
@@ -197,23 +198,23 @@
             this.btnTotal.UseVisualStyleBackColor = true;
             this.btnTotal.Click += new System.EventHandler(this.btnTotal_Click);
             // 
-            // label6
+            // CommentLbl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 12);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "コメント";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CommentLbl.AutoSize = true;
+            this.CommentLbl.Location = new System.Drawing.Point(22, 97);
+            this.CommentLbl.Name = "CommentLbl";
+            this.CommentLbl.Size = new System.Drawing.Size(38, 12);
+            this.CommentLbl.TabIndex = 31;
+            this.CommentLbl.Text = "コメント";
+            this.CommentLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox4
+            // CommenTxt
             // 
-            this.textBox4.Location = new System.Drawing.Point(27, 114);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(138, 45);
-            this.textBox4.TabIndex = 30;
+            this.CommenTxt.Location = new System.Drawing.Point(27, 114);
+            this.CommenTxt.Multiline = true;
+            this.CommenTxt.Name = "CommenTxt";
+            this.CommenTxt.Size = new System.Drawing.Size(138, 45);
+            this.CommenTxt.TabIndex = 30;
             // 
             // textBox11
             // 
@@ -223,16 +224,16 @@
             this.textBox11.TabIndex = 27;
             this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
-            // label7
+            // ThismonthLbl
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(22, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 12);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "00月の予算";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ThismonthLbl.AutoSize = true;
+            this.ThismonthLbl.BackColor = System.Drawing.Color.Transparent;
+            this.ThismonthLbl.Location = new System.Drawing.Point(22, 25);
+            this.ThismonthLbl.Name = "ThismonthLbl";
+            this.ThismonthLbl.Size = new System.Drawing.Size(63, 12);
+            this.ThismonthLbl.TabIndex = 28;
+            this.ThismonthLbl.Text = "00月の予算";
+            this.ThismonthLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // listView3
             // 
@@ -425,11 +426,22 @@
             this.csvBtn.UseVisualStyleBackColor = true;
             this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
+            // cateogoryDialogBtn
+            // 
+            this.cateogoryDialogBtn.Location = new System.Drawing.Point(484, 37);
+            this.cateogoryDialogBtn.Name = "cateogoryDialogBtn";
+            this.cateogoryDialogBtn.Size = new System.Drawing.Size(156, 26);
+            this.cateogoryDialogBtn.TabIndex = 48;
+            this.cateogoryDialogBtn.Text = "分類管理";
+            this.cateogoryDialogBtn.UseVisualStyleBackColor = true;
+            this.cateogoryDialogBtn.Click += new System.EventHandler(this.cateogoryDialogBtn_Click);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
+            this.Controls.Add(this.cateogoryDialogBtn);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);
@@ -458,10 +470,10 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label CommentLbl;
+        private System.Windows.Forms.TextBox CommenTxt;
         private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label ThismonthLbl;
         private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -483,10 +495,11 @@
 
         private System.Windows.Forms.Button csvBtn;
         private System.Windows.Forms.Button btnTotal;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button cateogoryDialogBtn;
+        private System.Windows.Forms.Label MoneyLbl;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label PercentageLbl;
+        private System.Windows.Forms.Label UserateLbl;
+        private System.Windows.Forms.Button BudgetBtn;
     }
 }

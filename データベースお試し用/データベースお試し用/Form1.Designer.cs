@@ -35,7 +35,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,14 +52,13 @@
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.csv_btn = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-
-
-            this.csv_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,16 +115,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(63, 20);
             this.comboBox1.TabIndex = 6;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(249, 21);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 50);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "削除";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -224,7 +212,7 @@
             this.label7.Location = new System.Drawing.Point(25, 9);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 102);
+            this.label7.Size = new System.Drawing.Size(38, 197);
             this.label7.TabIndex = 18;
             this.label7.Text = "TODOリスト";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,6 +276,36 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(329, 390);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(73, 31);
+            this.button7.TabIndex = 31;
+            this.button7.Text = "修正";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
+            // 
+            // csv_btn
+            // 
+            this.csv_btn.Location = new System.Drawing.Point(511, 13);
+            this.csv_btn.Name = "csv_btn";
+            this.csv_btn.Size = new System.Drawing.Size(75, 44);
+            this.csv_btn.TabIndex = 32;
+            this.csv_btn.Text = "CSV出力";
+            this.csv_btn.UseVisualStyleBackColor = true;
+            this.csv_btn.Click += new System.EventHandler(this.csv_btn_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(249, 21);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(85, 50);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "削除";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -324,33 +342,11 @@
             this.label13.TabIndex = 30;
             this.label13.Text = "label13";
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(329, 390);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(73, 31);
-            this.button7.TabIndex = 31;
-            this.button7.Text = "修正";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click_1);
-            // 
-
-            // csv_btn
-            // 
-            this.csv_btn.Location = new System.Drawing.Point(511, 13);
-            this.csv_btn.Name = "csv_btn";
-            this.csv_btn.Size = new System.Drawing.Size(75, 44);
-            this.csv_btn.TabIndex = 32;
-            this.csv_btn.Text = "CSV出力";
-            this.csv_btn.UseVisualStyleBackColor = true;
-            this.csv_btn.Click += new System.EventHandler(this.csv_btn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
-            this.ClientSize = new System.Drawing.Size(608, 385);
+            this.ClientSize = new System.Drawing.Size(646, 480);
             this.Controls.Add(this.csv_btn);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label13);
@@ -397,7 +393,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -415,13 +410,14 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+
+        private System.Windows.Forms.Button csv_btn;
+        private System.Windows.Forms.Button button3;
         public System.Windows.Forms.Label label10;
         public System.Windows.Forms.Label label11;
         public System.Windows.Forms.Label label12;
         public System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button7;
-
-        private System.Windows.Forms.Button csv_btn;
     }
 }
 

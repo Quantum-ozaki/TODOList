@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace データベースお試し用
 {
-    public class Category
+    public class Category : ICloneable
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public object Clone()
+        {
+            return new Category { Id = Id, Name = Name, CreatedDate = CreatedDate };
+        }
     }
 }

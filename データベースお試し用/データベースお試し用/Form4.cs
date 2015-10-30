@@ -40,21 +40,7 @@ namespace データベースお試し用
             listView2.Columns.Add("備考", 100, HorizontalAlignment.Left);
 
             // 分類のコンボボックスを初期化する
-            categories = new List<Category>();
-            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
-            {
-                con.Open();
-
-                string sql = "SELECT id, name FROM category;";
-
-                MySqlCommand cmd = new MySqlCommand(sql, con);
-                var reader = cmd.ExecuteReader();
-                while(reader.Read()){
-                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
-                    categories.Add(tmp);
-                    comboBox1.Items.Add(tmp.Name);
-                }
-            }
+            UpdateCategories();
 
 
             // 必要な変数を宣言する
@@ -62,7 +48,7 @@ namespace データベースお試し用
 
             // 月 (Month) を取得する
             int iMonth = dtNow.Month;
-            label7.Text = iMonth.ToString() + "月の予算";
+            ThismonthLbl.Text = iMonth.ToString() + "月の予算";
 
 
         }
@@ -278,7 +264,6 @@ namespace データベースお試し用
                 cn.date = DateTime.Parse(this.listView2.CheckedItems[0].SubItems[5].Text);
                 cn.remarks = this.listView2.CheckedItems[0].SubItems[6].Text;
 
-
                 //MessageBox.Show(cn.importance);
 
                 //----3.詰め込んだ物を渡す
@@ -306,7 +291,7 @@ namespace データベースお試し用
 
             string id_string = se.id.ToString();
             var target_item = this.listView2.Items.Find(id_string, false);
-            
+
 
             target_item[0].SubItems[0].Text = se.id.ToString();
             target_item[0].SubItems[2].Text = se.content;
@@ -314,7 +299,7 @@ namespace データベースお試し用
             target_item[0].SubItems[4].Text = se.price;
             target_item[0].SubItems[5].Text = se.date.ToString("yyyy/MM/dd");
             target_item[0].SubItems[6].Text = se.remarks;
-          
+
 
 
             string sql = string.Format("UPDATE content SET content = '{0}', category_id = (SELECT id FROM category WHERE name = '{1}'), price = '{2}', date = '{3}', remarks = '{4}' WHERE id = '{5}'",
@@ -338,7 +323,7 @@ namespace データベースお試し用
                 MessageBox.Show(ex.Message);
             }
 
-      
+
 
         }
 
@@ -482,7 +467,7 @@ namespace データベースお試し用
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = 100;
                         progressBar1.Value = Rsult;
-                        label12.Text = Rsult.ToString() + "%";
+                        PercentageLbl.Text = Rsult.ToString() + "%";
                     }
 
                     else if (Rsult > 100)
@@ -490,7 +475,7 @@ namespace データベースお試し用
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = 100;
                         progressBar1.Value = 100;
-                        label12.Text = Rsult.ToString() + "%";
+                        PercentageLbl.Text = Rsult.ToString() + "%";
                         MessageBox.Show("予算額を超えました！");
                         //Color foreColor = Color.Red;
                     }
@@ -502,6 +487,38 @@ namespace データベースお試し用
 
             }
 
+        }
+
+        private void cateogoryDialogBtn_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new CategoryDialog())
+            {
+                dialog.ShowDialog(this);
+            }
+
+            UpdateCategories();
+        }
+
+        private void UpdateCategories()
+        {
+            categories = new List<Category>();
+            comboBox1.Items.Clear();
+
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                string sql = "SELECT id, name FROM category;";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
+                    categories.Add(tmp);
+                    comboBox1.Items.Add(tmp.Name);
+                }
+            }
         }
 
         private void buttonEnd_Click(object sender, EventArgs e)
