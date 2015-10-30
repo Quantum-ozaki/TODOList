@@ -34,6 +34,11 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnTotal = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -58,12 +63,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.label8 = new System.Windows.Forms.Label();
             this.csvBtn = new System.Windows.Forms.Button();
-            this.cateogoryDialogBtn = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.categoryDialogBtn = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -137,6 +137,56 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "集計表示";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(86, 166);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(79, 23);
+            this.button3.TabIndex = 52;
+            this.button3.Text = "登録";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Location = new System.Drawing.Point(152, 77);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 12);
+            this.label12.TabIndex = 51;
+            this.label12.Text = "00％";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Location = new System.Drawing.Point(22, 48);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 12);
+            this.label11.TabIndex = 50;
+            this.label11.Text = "予算使用率";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(154, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(17, 12);
+            this.label10.TabIndex = 49;
+            this.label10.Text = "円";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(27, 64);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(124, 26);
+            this.progressBar1.TabIndex = 48;
             // 
             // btnTotal
             // 
@@ -375,72 +425,22 @@
             this.csvBtn.UseVisualStyleBackColor = true;
             this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
-            // cateogoryDialogBtn
+            // categoryDialogBtn
             // 
-            this.cateogoryDialogBtn.Location = new System.Drawing.Point(484, 37);
-            this.cateogoryDialogBtn.Name = "cateogoryDialogBtn";
-            this.cateogoryDialogBtn.Size = new System.Drawing.Size(156, 26);
-            this.cateogoryDialogBtn.TabIndex = 48;
-            this.cateogoryDialogBtn.Text = "分類管理";
-            this.cateogoryDialogBtn.UseVisualStyleBackColor = true;
-            this.cateogoryDialogBtn.Click += new System.EventHandler(this.cateogoryDialogBtn_Click);
-            //
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(27, 64);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(124, 26);
-            this.progressBar1.TabIndex = 48;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(154, 26);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(17, 12);
-            this.label10.TabIndex = 49;
-            this.label10.Text = "円";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(22, 48);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(65, 12);
-            this.label11.TabIndex = 50;
-            this.label11.Text = "予算使用率";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Location = new System.Drawing.Point(152, 77);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(29, 12);
-            this.label12.TabIndex = 51;
-            this.label12.Text = "00％";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(86, 166);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 23);
-            this.button3.TabIndex = 52;
-            this.button3.Text = "登録";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.categoryDialogBtn.Location = new System.Drawing.Point(484, 37);
+            this.categoryDialogBtn.Name = "categoryDialogBtn";
+            this.categoryDialogBtn.Size = new System.Drawing.Size(156, 26);
+            this.categoryDialogBtn.TabIndex = 48;
+            this.categoryDialogBtn.Text = "分類管理";
+            this.categoryDialogBtn.UseVisualStyleBackColor = true;
+            this.categoryDialogBtn.Click += new System.EventHandler(this.categoryDialogBtn_Click);
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
-            this.Controls.Add(this.cateogoryDialogBtn);
+            this.Controls.Add(this.categoryDialogBtn);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonEnd);
@@ -494,7 +494,7 @@
 
         private System.Windows.Forms.Button csvBtn;
         private System.Windows.Forms.Button btnTotal;
-        private System.Windows.Forms.Button cateogoryDialogBtn;
+        private System.Windows.Forms.Button categoryDialogBtn;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label12;

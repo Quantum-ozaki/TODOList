@@ -458,24 +458,24 @@ namespace データベースお試し用
                     //MessageBox.Show(total);
                     double iBudget = double.Parse(textBox11.Text);
                     double iTotal = double.Parse(total);
-                    double iRsult = iTotal / iBudget * 100;
+                    double iResult = iTotal / iBudget * 100;
                     //double iRsult = int Rsult;
-                    int Rsult = (int)iRsult;
+                    int Result = (int)iResult;
 
-                    if (Rsult <= 100)
+                    if (Result <= 100)
                     {
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = 100;
-                        progressBar1.Value = Rsult;
-                        label12.Text = Rsult.ToString() + "%";
+                        progressBar1.Value = Result;
+                        label12.Text = Result.ToString() + "%";
                     }
 
-                    else if (Rsult > 100)
+                    else if (Result > 100)
                     {
                         progressBar1.Minimum = 0;
                         progressBar1.Maximum = 100;
                         progressBar1.Value = 100;
-                        label12.Text = Rsult.ToString() + "%";
+                        label12.Text = Result.ToString() + "%";
                         MessageBox.Show("予算額を超えました！");
                         //Color foreColor = Color.Red;
                     }
@@ -489,7 +489,7 @@ namespace データベースお試し用
 
         }
 
-        private void cateogoryDialogBtn_Click(object sender, EventArgs e)
+        private void categoryDialogBtn_Click(object sender, EventArgs e)
         {
             using (var dialog = new CategoryDialog())
             {
