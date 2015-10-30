@@ -56,43 +56,7 @@ namespace データベースお試し用
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            //予算表示
-            //オブジェクト指向パラダイム
-            MySqlConnection con = new MySqlConnection();
-            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            con.ConnectionString = conString;
-            try
-            {
-                con.Open();
-                // MessageBox.Show("接続成功");
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-            // セレクト文出す
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT * FROM goal");
-
-            // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            // 結果を表示します。
-            while (reader.Read())
-            {
-
-                
-                string id = reader.GetString("id");
-                string price = reader.GetString("price");
-                string comment = reader.GetString("comment");
-                MessageBox.Show(id+price+comment);
-                textBox11.Text = price;
-                CommenTxt.Text = comment;
-            }
-
-            //最後にとじる
-            con.Close();
+;
         }
 
         public void Budgetcomment()
@@ -102,34 +66,29 @@ namespace データベースお試し用
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
             con.ConnectionString = conString;
-            try
-            {
-                con.Open();
-                // MessageBox.Show("接続成功");
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
+
+            con.Open();
+
             // セレクト文出す
             StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT * FROM goal");
+          //  sql.AppendLine("SELECT * FROM goal WHERE id = '0'");
+            sql.AppendLine("SELECT price FROM goal WHERE id LIKE '0'");
+
+            //string setprice = textBox11.Text;
+            //sql.AppendLine("UPDATE goal SET price = '" + setprice + "' ,WHERE id = '0'");
+            //sql.AppendLine("INSERT INTO goal(price, comment) VALUES(1000,'aaaaaaa')");
+            //sql.AppendLine("SELECT * FROM content WHERE id = '3'");
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
             MySqlDataReader reader = cmd.ExecuteReader();
-
-            // 結果を表示します。
-            while (reader.Read())
+          
+           while (reader.Read())
             {
-
-
-                string id = reader.GetString("id");
-                string price = reader.GetString("price");
-                string comment = reader.GetString("comment");
-                MessageBox.Show(id + price + comment);
-                textBox11.Text = price;
-                CommenTxt.Text = comment;
+               string price = reader.GetString("price");
+               //string comment = reader.GetString("comment");
+             textBox11.Text = price;
+               //CommenTxt.Text = comment;
             }
 
             //最後にとじる
@@ -217,6 +176,9 @@ namespace データベースお試し用
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            
+
             //オブジェクト指向パラダイム
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
@@ -249,7 +211,7 @@ namespace データベースお試し用
             StringBuilder sql = new StringBuilder();
 
             //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
-            sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = '" + strCategory + "'),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+            //sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = '" + strCategory + "'),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
 
             // よみこむやつ
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -442,7 +404,7 @@ namespace データベースお試し用
 
         private void btnTotal_Click(object sender, EventArgs e)
         {
-  
+            Budgetcomment();
 
             //リストビューをリセット
             foreach (ListViewItem item in this.listView3.Items)
@@ -499,7 +461,6 @@ namespace データベースお試し用
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Budgetcomment();
 
             try
             {
@@ -554,6 +515,9 @@ namespace データベースお試し用
 
                         progressBar1.Value = Result;
                         PercentageLbl.Text = Result.ToString() + "%";
+
+
+
                     }
 
                     else if (Result > 100)
@@ -565,6 +529,13 @@ namespace データベースお試し用
                         PercentageLbl.Text = Result.ToString() + "%";
                         MessageBox.Show("予算額を超えました！");
                         //Color foreColor = Color.Red;
+
+                        if (listView2.SelectedIndices.Count > 0 && listView2.SelectedIndices[0] > 0)
+                        {
+                            // 下記のように記述すると、コントロールの色を変更できます
+                            listView2.SelectedItems[0].UseItemStyleForSubItems = false;
+                            listView2.SelectedItems[0].BackColor = Color.Red;
+                        }
                     }
 
                 }
@@ -618,52 +589,29 @@ namespace データベースお試し用
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
 
-            if (listView2.SelectedIndices.Count > 0 && listView2.SelectedIndices[0] > 0)
+            if (progressBar1.Value ==100)
             {
-                // 下記のように記述すると、コントロールの色を変更できます
-                listView2.SelectedItems[0].UseItemStyleForSubItems = false;
-                listView2.SelectedItems[0].BackColor = Color.Red;
+
+
+
+                if (listView2.SelectedIndices.Count > 0 && listView2.SelectedIndices[0] > 0)
+                {
+                    // 下記のように記述すると、コントロールの色を変更できます
+                    listView2.SelectedItems[0].UseItemStyleForSubItems = false;
+                    listView2.SelectedItems[0].BackColor = Color.Red;
+                }
+
             }
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            //予算表示
-            //オブジェクト指向パラダイム
-            MySqlConnection con = new MySqlConnection();
-            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-            con.ConnectionString = conString;
-            try
-            {
-                con.Open();
-                // MessageBox.Show("接続成功");
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-            // セレクト文出す
-            StringBuilder sql = new StringBuilder();
-            sql.AppendLine("SELECT id, price, comment FROM goal");
 
-            // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            
-            // 結果を表示します。
-            while (reader.Read())
-            {
-                string id = reader.GetString("id");
-                string price = reader.GetString("price");
-                string comment = reader.GetString("comment")
-                    ;
-                MessageBox.Show(id);
-                textBox11.Text = price;
-                CommenTxt.Text = comment;
-            }
+        }
 
-            //最後にとじる
-            con.Close();
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
