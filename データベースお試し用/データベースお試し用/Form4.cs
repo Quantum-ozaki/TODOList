@@ -509,9 +509,11 @@ namespace データベースお試し用
             this.Close();
         }
 
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
         {
-            Color foreColor = Color.Red;
+
         }
     }
 }
