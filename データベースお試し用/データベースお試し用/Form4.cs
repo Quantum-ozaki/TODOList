@@ -17,6 +17,7 @@ namespace データベースお試し用
     {
         private List<Category> categories;
 
+
         public Form4()
         {
             InitializeComponent();
@@ -51,12 +52,88 @@ namespace データベースお試し用
             int iMonth = dtNow.Month;
             ThismonthLbl.Text = iMonth.ToString() + "月の予算";
 
-
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
+            //予算表示
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT * FROM goal");
 
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+
+                
+                string id = reader.GetString("id");
+                string price = reader.GetString("price");
+                string comment = reader.GetString("comment");
+                MessageBox.Show(id+price+comment);
+                textBox11.Text = price;
+                CommenTxt.Text = comment;
+            }
+
+            //最後にとじる
+            con.Close();
+        }
+
+        public void Budgetcomment()
+        {
+            //予算表示
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT * FROM goal");
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            // 結果を表示します。
+            while (reader.Read())
+            {
+
+
+                string id = reader.GetString("id");
+                string price = reader.GetString("price");
+                string comment = reader.GetString("comment");
+                MessageBox.Show(id + price + comment);
+                textBox11.Text = price;
+                CommenTxt.Text = comment;
+            }
+
+            //最後にとじる
+            con.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -422,6 +499,8 @@ namespace データベースお試し用
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Budgetcomment();
+
             try
             {
                 //オブジェクト指向パラダイム
@@ -516,7 +595,7 @@ namespace データベースお試し用
             {
                 con.Open();
 
-                string sql = "SELECT id, name FROM category;";
+                string sql = "SELECT id, name FROM category WHERE id = '1'";
 
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 var reader = cmd.ExecuteReader();
@@ -545,6 +624,45 @@ namespace データベースお試し用
                 listView2.SelectedItems[0].UseItemStyleForSubItems = false;
                 listView2.SelectedItems[0].BackColor = Color.Red;
             }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            //予算表示
+            //オブジェクト指向パラダイム
+            MySqlConnection con = new MySqlConnection();
+            string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            con.ConnectionString = conString;
+            try
+            {
+                con.Open();
+                // MessageBox.Show("接続成功");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            // セレクト文出す
+            StringBuilder sql = new StringBuilder();
+            sql.AppendLine("SELECT id, price, comment FROM goal");
+
+            // よみこむやつ
+            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            
+            // 結果を表示します。
+            while (reader.Read())
+            {
+                string id = reader.GetString("id");
+                string price = reader.GetString("price");
+                string comment = reader.GetString("comment");
+                MessageBox.Show(id);
+                textBox11.Text = price;
+                CommenTxt.Text = comment;
+            }
+
+            //最後にとじる
+            con.Close();
         }
     }
 }

@@ -38,7 +38,6 @@
             this.PercentageLbl = new System.Windows.Forms.Label();
             this.UserateLbl = new System.Windows.Forms.Label();
             this.MoneyLbl = new System.Windows.Forms.Label();
-
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnTotal = new System.Windows.Forms.Button();
             this.CommentLbl = new System.Windows.Forms.Label();
@@ -64,9 +63,8 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.label8 = new System.Windows.Forms.Label();
             this.csvBtn = new System.Windows.Forms.Button();
-
             this.categoryDialogBtn = new System.Windows.Forms.Button();
-
+            this.button3 = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -429,7 +427,6 @@
             this.csvBtn.UseVisualStyleBackColor = true;
             this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
             // 
-
             // categoryDialogBtn
             // 
             this.categoryDialogBtn.Location = new System.Drawing.Point(484, 37);
@@ -440,11 +437,22 @@
             this.categoryDialogBtn.UseVisualStyleBackColor = true;
             this.categoryDialogBtn.Click += new System.EventHandler(this.categoryDialogBtn_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(230, 62);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 49;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.categoryDialogBtn);
             this.Controls.Add(this.csvBtn);
             this.Controls.Add(this.button1);
@@ -507,5 +515,6 @@
         private System.Windows.Forms.Label PercentageLbl;
         private System.Windows.Forms.Label UserateLbl;
         private System.Windows.Forms.Button BudgetBtn;
+        private System.Windows.Forms.Button button3;
     }
 }
