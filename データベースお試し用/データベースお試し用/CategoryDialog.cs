@@ -15,7 +15,7 @@ namespace データベースお試し用
     public partial class CategoryDialog : Form
     {
         private List<Category> categories;
-        private int? last_selected_index;
+        private Category selected_item;
 
         public CategoryDialog()
         {
@@ -27,15 +27,17 @@ namespace データベースお試し用
             listView1.MultiSelect = false;
             listView1.LabelEdit = true;
             listView1.FullRowSelect = true;
+
             listView1.Columns.Add("ID", 50, HorizontalAlignment.Left);
             listView1.Columns.Add("分類名", 100, HorizontalAlignment.Left);
+            listView1.Columns.Add("作成日時", 200, HorizontalAlignment.Left);
 
             UpdateRows();
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!last_selected_index.HasValue)
+            /*if (!last_selected_index.HasValue)
             {
                 last_selected_index = listView1.SelectedIndices[0];
                 return;
@@ -47,31 +49,42 @@ namespace データベースお試し用
 
                 var selected_item = listView1.Items[last_selected_index.Value];
                 string sql = string.Format("UPDATE category SET name = '{0}', create_user_id = 1, created_date = CURRENT_TIMESTAMP WHERE id = {1}", selected_item.SubItems[1].Text, selected_item.SubItems[0].Text);
-                
+
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
+            }*/
+
+            //UpdateRows();
+
+            if (listView1.SelectedIndices.Count > 0 && listView1.SelectedIndices[0] > 0)
+            {
+                int selected_index = listView1.SelectedIndices[0];
+                newCategoryName.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                selected_item = categories[selected_index];
             }
 
-            UpdateRows();
-
-            last_selected_index = listView1.SelectedIndices[0];
+            /*if (listView1.SelectedIndices.Count > 0 && listView1.SelectedIndices[0] > 0)
+            {
+                last_selected_index = listView1.SelectedIndices[0];
+            }
+            else
+            {
+                last_selected_index = null;
+            }*/
         }
 
-        private void newBtn_Click(object sender, EventArgs e)
+        private void addBtn_Click(object sender, EventArgs e)
         {
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
                 con.Open();
 
-                string sql = "INSERT INTO category(name, create_user_id, created_date) VALUES ('', 1, CURRENT_TIMESTAMP);";
+                string sql = string.Format("INSERT INTO category(name, create_user_id, created_date) VALUES ('{0}', 1, CURRENT_TIMESTAMP);", newCategoryName.Text);
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
-
-                string sql2 = "SELECT id FROM category ORDER BY id DESC LIMIT 1";
-                MySqlCommand cmd2 = new MySqlCommand(sql2, con);
-                int id = (int)cmd2.ExecuteScalar();
-                this.listView1.DataBindings.Add("Text", new Category { Id = id, Name = "" }, "Name");
             }
+
+            UpdateRows();
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
@@ -80,13 +93,31 @@ namespace データベースお試し用
             {
                 con.Open();
 
-                foreach(var item in ((ListView)sender).SelectedItems){
+                foreach (var item in listView1.SelectedItems)
+                {
                     var sub_item = ((ListViewItem)item).SubItems[0];
                     string sql = string.Format("DELETE FROM category WHERE id = {0}", sub_item.Text);
                     MySqlCommand cmd = new MySqlCommand(sql, con);
                     cmd.ExecuteNonQuery();
                 }
             }
+
+            UpdateRows();
+        }
+
+        private void modifyBtn_Click(object sender, EventArgs e)
+        {
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                string sql = string.Format("UPDATE category SET name = '{0}' WHERE id = {1};", newCategoryName.Text, selected_item.Id);
+
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                cmd.ExecuteNonQuery();
+            }
+
+            UpdateRows();
         }
 
         private void UpdateRows()
@@ -103,11 +134,12 @@ namespace データベースお試し用
                 categories.Clear();
                 while (reader.Read())
                 {
-                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
+                    var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1), CreatedDate = reader.GetDateTime(3) };
                     var item = new ListViewItem();
                     item.Name = tmp.Id.ToString();
                     item.Text = tmp.Id.ToString();
                     item.SubItems.Add(tmp.Name);
+                    item.SubItems.Add(tmp.CreatedDate.ToString("yyyy/MM/dd"));
 
                     listView1.Items.Add(item);
                     categories.Add(tmp);

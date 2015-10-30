@@ -477,6 +477,8 @@ namespace データベースお試し用
         private void UpdateCategories()
         {
             categories = new List<Category>();
+            comboBox1.Items.Clear();
+
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
                 con.Open();

@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
-            this.newBtn = new System.Windows.Forms.Button();
+            this.addBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.newCategoryName = new System.Windows.Forms.TextBox();
+            this.modifyBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView1
@@ -44,19 +45,19 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // newBtn
+            // addBtn
             // 
-            this.newBtn.Location = new System.Drawing.Point(321, 234);
-            this.newBtn.Name = "newBtn";
-            this.newBtn.Size = new System.Drawing.Size(75, 23);
-            this.newBtn.TabIndex = 1;
-            this.newBtn.Text = "新規";
-            this.newBtn.UseVisualStyleBackColor = true;
-            this.newBtn.Click += new System.EventHandler(this.newBtn_Click);
+            this.addBtn.Location = new System.Drawing.Point(224, 12);
+            this.addBtn.Name = "addBtn";
+            this.addBtn.Size = new System.Drawing.Size(75, 23);
+            this.addBtn.TabIndex = 1;
+            this.addBtn.Text = "追加";
+            this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(391, 12);
+            this.deleteBtn.Location = new System.Drawing.Point(413, 12);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(75, 23);
             this.deleteBtn.TabIndex = 2;
@@ -67,28 +68,39 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 238);
+            this.label1.Location = new System.Drawing.Point(12, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "新規登録分類名";
+            this.label1.Text = "分類名";
             // 
             // newCategoryName
             // 
-            this.newCategoryName.Location = new System.Drawing.Point(108, 238);
+            this.newCategoryName.Location = new System.Drawing.Point(59, 14);
             this.newCategoryName.Name = "newCategoryName";
-            this.newCategoryName.Size = new System.Drawing.Size(207, 19);
+            this.newCategoryName.Size = new System.Drawing.Size(159, 19);
             this.newCategoryName.TabIndex = 4;
+            // 
+            // modifyBtn
+            // 
+            this.modifyBtn.Location = new System.Drawing.Point(305, 12);
+            this.modifyBtn.Name = "modifyBtn";
+            this.modifyBtn.Size = new System.Drawing.Size(75, 23);
+            this.modifyBtn.TabIndex = 5;
+            this.modifyBtn.Text = "変更";
+            this.modifyBtn.UseVisualStyleBackColor = true;
+            this.modifyBtn.Click += new System.EventHandler(this.modifyBtn_Click);
             // 
             // CategoryDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 288);
+            this.Controls.Add(this.modifyBtn);
             this.Controls.Add(this.newCategoryName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.deleteBtn);
-            this.Controls.Add(this.newBtn);
+            this.Controls.Add(this.addBtn);
             this.Controls.Add(this.listView1);
             this.Name = "CategoryDialog";
             this.Text = "分類管理";
@@ -100,9 +112,10 @@
         #endregion
 
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button newBtn;
+        private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox newCategoryName;
+        private System.Windows.Forms.Button modifyBtn;
     }
 }
