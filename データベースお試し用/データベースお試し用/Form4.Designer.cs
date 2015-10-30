@@ -387,6 +387,7 @@
             this.listView2.Size = new System.Drawing.Size(471, 234);
             this.listView2.TabIndex = 27;
             this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView2_ColumnClick);
             this.listView2.Click += new System.EventHandler(this.btnTotal_Click);
             // 
             // tabControl1

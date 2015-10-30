@@ -16,11 +16,14 @@ namespace データベースお試し用
     public partial class Form4 : Form
     {
         private List<Category> categories;
+        private MainContentComparer main_content_comparer;
 
 
         public Form4()
         {
             InitializeComponent();
+
+            main_content_comparer = new MainContentComparer();
 
             dateTimePicker2.Format = DateTimePickerFormat.Short;
 
@@ -32,6 +35,7 @@ namespace データベースお試し用
             listView2.View = View.Details;
             listView2.CheckBoxes = true;
             listView2.FullRowSelect = true;
+            listView2.ListViewItemSorter = main_content_comparer;
 
             listView2.Columns.Add("□", 25, HorizontalAlignment.Left);
             listView2.Columns.Add("重要度", 0, HorizontalAlignment.Left);
@@ -723,6 +727,12 @@ namespace データベースお試し用
             //}
 
             
+        }
+
+        private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            main_content_comparer.ColumnNumber = e.Column;
+            listView2.Sort();
         }
     }
 }
