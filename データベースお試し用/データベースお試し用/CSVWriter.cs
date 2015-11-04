@@ -16,6 +16,10 @@ namespace データベースお試し用
         private TextWriter writer;
         private string path;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="path"></param>
         public CSVWriter(string path)
         {
             writer = new StreamWriter(new FileStream(path, FileMode.Create), UTF8Encoding.Default);
@@ -51,6 +55,9 @@ namespace データベースお試し用
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// インスタンスを破棄する
+        /// </summary>
         public void Dispose()
         {
             writer.Close();

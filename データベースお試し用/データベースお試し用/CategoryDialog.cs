@@ -45,6 +45,11 @@ namespace データベースお試し用
             }
         }
 
+        /// <summary>
+        /// 追加ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
@@ -59,6 +64,11 @@ namespace データベースお試し用
             UpdateRows();
         }
 
+        /// <summary>
+        /// 削除ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
@@ -77,6 +87,11 @@ namespace データベースお試し用
             UpdateRows();
         }
 
+        /// <summary>
+        /// 変更ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modifyBtn_Click(object sender, EventArgs e)
         {
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
@@ -92,6 +107,9 @@ namespace データベースお試し用
             UpdateRows();
         }
 
+        /// <summary>
+        /// 分類管理ウインドウ
+        /// </summary>
         private void UpdateRows()
         {
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
