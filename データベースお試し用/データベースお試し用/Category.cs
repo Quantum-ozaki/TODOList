@@ -9,15 +9,10 @@ namespace データベースお試し用
     /// <summary>
     /// 分類のモデルクラス(完全にテーブルの内容をマッピングしているわけではない)
     /// </summary>
-    public class Category : ICloneable
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
-
-        public object Clone()
-        {
-            return new Category { Id = Id, Name = Name, CreatedDate = CreatedDate };
-        }
     }
 }
