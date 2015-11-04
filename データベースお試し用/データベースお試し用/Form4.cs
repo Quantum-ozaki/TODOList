@@ -25,7 +25,7 @@ namespace データベースお試し用
 
             main_content_comparer = new MainContentComparer();
 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
+            dateTimePicker.Format = DateTimePickerFormat.Short;
 
 
             listView3.View = View.Details;
@@ -74,9 +74,10 @@ namespace データベースお試し用
             con.Open();
 
             // セレクト文出す
-            StringBuilder sql = new StringBuilder();
+            //StringBuilder sql = new StringBuilder();
           //  sql.AppendLine("SELECT * FROM goal WHERE id = '0'");
-            sql.AppendLine("SELECT price FROM goal WHERE id LIKE '0'");
+            //sql.AppendLine("SELECT price FROM goal WHERE id LIKE '0'");
+            string sql = "SELECT price FROM goal WHERE id LIKE '0';";
 
             //string setprice = textBox11.Text;
             //sql.AppendLine("UPDATE goal SET price = '" + setprice + "' ,WHERE id = '0'");
@@ -91,7 +92,7 @@ namespace データベースお試し用
             {
                string price = reader.GetString("price");
                //string comment = reader.GetString("comment");
-             textBox11.Text = price;
+             budgetTextBox.Text = price;
                //CommenTxt.Text = comment;
             }
 
@@ -117,12 +118,12 @@ namespace データベースお試し用
 
         }
 
-        public void Budget()
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 登録ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void registerBtn_Click(object sender, EventArgs e)
         {
 
             
@@ -144,13 +145,13 @@ namespace データベースお試し用
             }
 
             // フォームの内容
-            string strCategory = comboBox1.Text;
-            string strContent = textBox1.Text;
-            string strPrice = textBox2.Text;
-            string strRemarks = textBox3.Text;
+            string strCategory = catergoryComboBox.Text;
+            string strContent = nameTextBox.Text;
+            string strPrice = priceTextBox.Text;
+            string strRemarks = noteTextBox.Text;
             //string strData = dateTimePicker2.Text;
 
-            string strData = dateTimePicker2.Text;
+            string strData = dateTimePicker.Text;
             //文字列をDateTime値に変換する
             DateTime dtData = DateTime.Parse(strData);
 
@@ -169,10 +170,10 @@ namespace データベースお試し用
             //最後にとじる
             con.Close();
 
-            comboBox1.Text = "";
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
+            catergoryComboBox.Text = "";
+            nameTextBox.Text = "";
+            priceTextBox.Text = "";
+            noteTextBox.Text = "";
 
             //リストビューの中身を更新する
             FetchMainContents();
@@ -193,6 +194,11 @@ namespace データベースお試し用
 
         }
 
+        /// <summary>
+        /// 削除ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             //オブジェクト指向パラダイム
@@ -218,8 +224,9 @@ namespace データベースお試し用
 
 
                 // DELETE文出す
-                StringBuilder sql = new StringBuilder();
-                sql.AppendLine("DELETE FROM content WHERE id = '" + msg + "'");
+                //StringBuilder sql = new StringBuilder();
+                //sql.AppendLine("DELETE FROM content WHERE id = '" + msg + "'");
+                string sql = string.Format("DELETE FROM content WHERE id = '{0}';", msg);
                 //MessageBox.Show(msg);
 
                 // よみこむやつ
@@ -236,6 +243,11 @@ namespace データベースお試し用
 
         }
 
+        /// <summary>
+        /// 変更ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonChange_Click(object sender, EventArgs e)
         {
 
@@ -277,6 +289,10 @@ namespace データベースお試し用
 
         }
 
+        /// <summary>
+        /// モデルクラスをやりとりして変更内容を反映する
+        /// </summary>
+        /// <param name="se"></param>
         public void SetcontentItems(Correction se)
         {
 
@@ -306,7 +322,7 @@ namespace データベースお試し用
             {
                 con.Open();
 
-                var cmd = new MySqlCommand(sql.ToString(), con);
+                var cmd = new MySqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
 
                 con.Close();
@@ -320,7 +336,11 @@ namespace データベースお試し用
 
         }
 
-
+        /// <summary>
+        /// CSV出力ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void csvBtn_Click(object sender, EventArgs e)
         {
             string save_path = "";
@@ -350,6 +370,11 @@ namespace データベースお試し用
             }
         }
 
+        /// <summary>
+        /// 月別集計ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTotal_Click(object sender, EventArgs e)
         {
             Budgetcomment();
@@ -371,6 +396,7 @@ namespace データベースお試し用
                 string sql = "SELECT DATE_FORMAT(date, '%Y-%m') as date, SUM(price) AS total FROM content GROUP BY DATE_FORMAT(date, '%Y%m')";
 
                 // よみこむやつ
+                //MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -400,13 +426,13 @@ namespace データベースお試し用
 
                 Font f = new Font(FontFamily.GenericSansSerif, 9);
 
-                if (!textBox11.Text.Any())
+                if (!budgetTextBox.Text.Any())
                 {
                     return;
                 }
 
                 int total_price = 0;
-                int budget = int.Parse(textBox11.Text);
+                int budget = int.Parse(budgetTextBox.Text);
                 List<ListViewItem> items = new List<ListViewItem>();
                 Color color;
                 // 結果を表示します。
@@ -462,7 +488,12 @@ namespace データベースお試し用
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 月別集計ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void budgetBtn_Click(object sender, EventArgs e)
         {
 
             try
@@ -491,12 +522,14 @@ namespace データベースお試し用
                 int iYear = dtNow.Year;
 
                 // セレクト文出す
-                StringBuilder sql = new StringBuilder();
+                //StringBuilder sql = new StringBuilder();
                 //sql.AppendLine("SELECT SUM(price) AS total FROM content");
-                sql.AppendLine("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m')= '" + iYear + iMonth + "'");
+                //sql.AppendLine("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m')= '" + iYear + iMonth + "'");
+                string sql = string.Format("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m') = '{0}{1}';", iYear, iMonth);
 
                 // よみこむやつ
-                MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                //MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                MySqlCommand cmd = new MySqlCommand(sql, con);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 // 結果を表示します。
@@ -505,7 +538,7 @@ namespace データベースお試し用
                     string total = reader.GetString("total");
 
                     //MessageBox.Show(total);
-                    double iBudget = double.Parse(textBox11.Text);
+                    double iBudget = double.Parse(budgetTextBox.Text);
                     double iTotal = double.Parse(total);
                     double iResult = iTotal / iBudget * 100;
                     //double iRsult = int Rsult;
@@ -513,10 +546,10 @@ namespace データベースお試し用
 
                     if (Result <= 100)
                     {
-                        progressBar1.Minimum = 0;
-                        progressBar1.Maximum = 100;
+                        userateBar.Minimum = 0;
+                        userateBar.Maximum = 100;
 
-                        progressBar1.Value = Result;
+                        userateBar.Value = Result;
                         PercentageLbl.Text = Result.ToString() + "%";
 
 
@@ -525,9 +558,9 @@ namespace データベースお試し用
 
                     else if (Result > 100)
                     {
-                        progressBar1.Minimum = 0;
-                        progressBar1.Maximum = 100;
-                        progressBar1.Value = 100;
+                        userateBar.Minimum = 0;
+                        userateBar.Maximum = 100;
+                        userateBar.Value = 100;
 
                         PercentageLbl.Text = Result.ToString() + "%";
                         MessageBox.Show("予算額を超えました！");
@@ -550,6 +583,11 @@ namespace データベースお試し用
 
         }
 
+        /// <summary>
+        /// 分類管理ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void categoryDialogBtn_Click(object sender, EventArgs e)
         {
             using (var dialog = new CategoryDialog())
@@ -560,10 +598,13 @@ namespace データベースお試し用
             UpdateCategories();
         }
 
+        /// <summary>
+        /// 分類コンボボックスの中身を更新するプライベートメソッド
+        /// </summary>
         private void UpdateCategories()
         {
             categories = new List<Category>();
-            comboBox1.Items.Clear();
+            catergoryComboBox.Items.Clear();
 
             using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
@@ -577,11 +618,16 @@ namespace データベースお試し用
                 {
                     var tmp = new Category { Id = reader.GetInt32(0), Name = reader.GetString(1) };
                     categories.Add(tmp);
-                    comboBox1.Items.Add(tmp.Name);
+                    catergoryComboBox.Items.Add(tmp.Name);
                 }
             }
         }
 
+        /// <summary>
+        /// 終了ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEnd_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -592,7 +638,7 @@ namespace データベースお試し用
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
 
-            if (progressBar1.Value ==100)
+            if (userateBar.Value ==100)
             {
 
 
@@ -617,6 +663,9 @@ namespace データベースお試し用
 
         }
 
+        /// <summary>
+        /// TODOリストの中身を更新するプライベートメソッド
+        /// </summary>
         private void FetchMainContents()
         {
             //オブジェクト指向パラダイム
@@ -667,6 +716,10 @@ namespace データベースお試し用
             }
         }
 
+        /// <summary>
+        /// TODOリストの中身をコントロールにセットするプライベートメソッド
+        /// </summary>
+        /// <param name="items"></param>
         private void UpdateMainContents(List<ListViewItem> items)
         {
             listView2.Items.Clear();
@@ -683,10 +736,20 @@ namespace データベースお試し用
             
         }
 
+        /// <summary>
+        /// メインコンテンツの列をクリックしたときに呼び出されるクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView2_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             main_content_comparer.ColumnNumber = e.Column;
             listView2.Sort();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

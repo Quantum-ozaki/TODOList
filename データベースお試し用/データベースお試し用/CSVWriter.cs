@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace データベースお試し用
 {
+    /// <summary>
+    /// CSV出力を行うクラス
+    /// </summary>
     public class CSVWriter : IDisposable
     {
         private TextWriter writer;
@@ -19,12 +22,20 @@ namespace データベースお試し用
             this.path = path;
         }
 
+        /// <summary>
+        /// ヘッダー行を出力する
+        /// </summary>
+        /// <param name="value"></param>
         public void WriteHeader(string value)
         {
             writer.Write(value);
             writer.WriteLine();
         }
 
+        /// <summary>
+        /// TODOリストの1行を出力する
+        /// </summary>
+        /// <param name="viewItem"></param>
         public void Write(ListViewItem viewItem)
         {
             bool first = true;

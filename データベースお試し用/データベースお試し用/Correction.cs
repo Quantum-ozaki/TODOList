@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace データベースお試し用
 {
+    /// <summary>
+    /// TODOリストコンテンツのモデルクラス
+    /// </summary>
     public class Correction
     {
         // プロパティは単語の先頭大文字にしましょう
