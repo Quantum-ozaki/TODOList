@@ -50,17 +50,16 @@ namespace データベースお試し用
 
 
             // 必要な変数を宣言する
-            DateTime dtNow = DateTime.Now;
+            DateTime now = DateTime.Now;
 
             // 月 (Month) を取得する
-            int iMonth = dtNow.Month;
-            ThismonthLbl.Text = iMonth.ToString() + "月の予算";
+            int month = now.Month;
+            ThismonthLbl.Text = month.ToString() + "月の予算";
 
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
-;
         }
 
         public void Budgetcomment()
@@ -88,11 +87,11 @@ namespace データベースお試し用
             MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
             MySqlDataReader reader = cmd.ExecuteReader();
           
-           while (reader.Read())
+            while (reader.Read())
             {
                string price = reader.GetString("price");
                //string comment = reader.GetString("comment");
-             budgetTextBox.Text = price;
+               budgetTextBox.Text = price;
                //CommenTxt.Text = comment;
             }
 
@@ -485,47 +484,26 @@ namespace データベースお試し用
                 UpdateMainContents(items);
             }
 
-
-        }
-
-        /// <summary>
-        /// 月別集計ボタンのクリックハンドラ
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void budgetBtn_Click(object sender, EventArgs e)
-        {
-
-            try
+            using(MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
             {
                 //オブジェクト指向パラダイム
-                MySqlConnection con = new MySqlConnection();
-                string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
-                con.ConnectionString = conString;
-
-                try
-                {
-                    con.Open();
-                    // MessageBox.Show("接続成功");
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message);
-
-                }
+                con.Open();
 
 
                 // 必要な変数を宣言する
-                DateTime dtNow = DateTime.Now;
+                //DateTime dtNow = DateTime.Now;
+                DateTime now = DateTime.Now;
                 // 月 (Month) を取得する
-                int iMonth = dtNow.Month;
-                int iYear = dtNow.Year;
+                //int iMonth = now.Month;
+                //int iYear = now.Year;
+                int month = now.Month;
+                int year = now.Year;
 
                 // セレクト文出す
                 //StringBuilder sql = new StringBuilder();
                 //sql.AppendLine("SELECT SUM(price) AS total FROM content");
                 //sql.AppendLine("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m')= '" + iYear + iMonth + "'");
-                string sql = string.Format("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m') = '{0}{1}';", iYear, iMonth);
+                string sql = string.Format("SELECT SUM(price) AS total FROM content WHERE DATE_FORMAT(date, '%Y%m') = '{0}{1}';", year, month);
 
                 // よみこむやつ
                 //MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
@@ -538,31 +516,35 @@ namespace データベースお試し用
                     string total = reader.GetString("total");
 
                     //MessageBox.Show(total);
-                    double iBudget = double.Parse(budgetTextBox.Text);
-                    double iTotal = double.Parse(total);
-                    double iResult = iTotal / iBudget * 100;
+                    //double iBudget = double.Parse(budgetTextBox.Text);
+                    //double iTotal = double.Parse(total);
+                    //double iResult = iTotal / iBudget * 100;
+                    double budget = double.Parse(budgetTextBox.Text);
+                    double total_amt = double.Parse(total);
+                    double tmp_result = total_amt / budget * 100.0;
                     //double iRsult = int Rsult;
-                    int Result = (int)iResult;
+                    //int Result = (int)iResult;
+                    int result = (int)tmp_result;
 
-                    if (Result <= 100)
+                    if (result <= 100)
                     {
                         userateBar.Minimum = 0;
                         userateBar.Maximum = 100;
 
-                        userateBar.Value = Result;
-                        PercentageLbl.Text = Result.ToString() + "%";
+                        userateBar.Value = result;
+                        PercentageLbl.Text = result.ToString() + "%";
 
 
 
                     }
 
-                    else if (Result > 100)
+                    else if (result > 100)
                     {
                         userateBar.Minimum = 0;
                         userateBar.Maximum = 100;
                         userateBar.Value = 100;
 
-                        PercentageLbl.Text = Result.ToString() + "%";
+                        PercentageLbl.Text = result.ToString() + "%";
                         MessageBox.Show("予算額を超えました！");
                         //Color foreColor = Color.Red;
 
@@ -576,11 +558,40 @@ namespace データベースお試し用
 
                 }
             }
-            catch (Exception)
-            {
 
+
+        }
+
+        /// <summary>
+        /// 集計表示タブの登録ボタンのクリックハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void budgetBtn_Click(object sender, EventArgs e)
+        {
+            string price = budgetTextBox.Text;
+            string comment = CommenTxt.Text;
+            string cmd_name;
+            string exist_sql = "SELECT COUNT(id) FROM goal;";
+            using (MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                MySqlCommand cmd = new MySqlCommand(exist_sql, con);
+                object obj = cmd.ExecuteScalar();
+                long count = (long)obj;
+                cmd_name = (count > 0) ? "UPDATE goal SET price = {0}, comment = '{1}' WHERE id = 1" : "INSERT INTO goal(price, comment) VALUES ({0}, '{1}')";
             }
 
+            string sql = string.Format(cmd_name, price, comment);
+
+            using (MySqlConnection con2 = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con2.Open();
+
+                MySqlCommand cmd2 = new MySqlCommand(sql, con2);
+                cmd2.ExecuteNonQuery();
+            }
         }
 
         /// <summary>
