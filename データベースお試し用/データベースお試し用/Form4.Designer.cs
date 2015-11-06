@@ -61,9 +61,10 @@
             this.listView2 = new System.Windows.Forms.ListView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.mainLbl = new System.Windows.Forms.Label();
-            this.csvBtn = new System.Windows.Forms.Button();
+            this.csvOutBtn = new System.Windows.Forms.Button();
             this.categoryDialogBtn = new System.Windows.Forms.Button();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.csvInBtn = new System.Windows.Forms.Button();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -71,7 +72,7 @@
             // 
             // buttonEnd
             // 
-            this.buttonEnd.Location = new System.Drawing.Point(605, 69);
+            this.buttonEnd.Location = new System.Drawing.Point(605, 68);
             this.buttonEnd.Name = "buttonEnd";
             this.buttonEnd.Size = new System.Drawing.Size(75, 23);
             this.buttonEnd.TabIndex = 40;
@@ -108,7 +109,7 @@
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(525, 69);
+            this.connectBtn.Location = new System.Drawing.Point(524, 68);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(75, 23);
             this.connectBtn.TabIndex = 42;
@@ -411,15 +412,15 @@
             this.mainLbl.TabIndex = 45;
             this.mainLbl.Text = "家計簿アプリ";
             // 
-            // csvBtn
+            // csvOutBtn
             // 
-            this.csvBtn.Location = new System.Drawing.Point(401, 69);
-            this.csvBtn.Name = "csvBtn";
-            this.csvBtn.Size = new System.Drawing.Size(119, 23);
-            this.csvBtn.TabIndex = 46;
-            this.csvBtn.Text = "CSV出力";
-            this.csvBtn.UseVisualStyleBackColor = true;
-            this.csvBtn.Click += new System.EventHandler(this.csvBtn_Click);
+            this.csvOutBtn.Location = new System.Drawing.Point(429, 68);
+            this.csvOutBtn.Name = "csvOutBtn";
+            this.csvOutBtn.Size = new System.Drawing.Size(91, 23);
+            this.csvOutBtn.TabIndex = 46;
+            this.csvOutBtn.Text = "CSV出力";
+            this.csvOutBtn.UseVisualStyleBackColor = true;
+            this.csvOutBtn.Click += new System.EventHandler(this.csvOutBtn_Click);
             // 
             // categoryDialogBtn
             // 
@@ -440,13 +441,24 @@
             this.mainMenu.Text = "mainMenu";
             this.mainMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
+            // csvInBtn
+            // 
+            this.csvInBtn.Location = new System.Drawing.Point(337, 68);
+            this.csvInBtn.Name = "csvInBtn";
+            this.csvInBtn.Size = new System.Drawing.Size(86, 23);
+            this.csvInBtn.TabIndex = 50;
+            this.csvInBtn.Text = "CSV入力";
+            this.csvInBtn.UseVisualStyleBackColor = true;
+            this.csvInBtn.Click += new System.EventHandler(this.csvInBtn_Click);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 358);
+            this.Controls.Add(this.csvInBtn);
             this.Controls.Add(this.categoryDialogBtn);
-            this.Controls.Add(this.csvBtn);
+            this.Controls.Add(this.csvOutBtn);
             this.Controls.Add(this.connectBtn);
             this.Controls.Add(this.buttonEnd);
             this.Controls.Add(this.mainLbl);
@@ -497,7 +509,7 @@
         private System.Windows.Forms.Label mainLbl;
         private System.Windows.Forms.Label label9;
 
-        private System.Windows.Forms.Button csvBtn;
+        private System.Windows.Forms.Button csvOutBtn;
         private System.Windows.Forms.Button btnTotal;
 
         private System.Windows.Forms.Button categoryDialogBtn;
@@ -508,5 +520,6 @@
         private System.Windows.Forms.Label UserateLbl;
         private System.Windows.Forms.Button BudgetBtn;
         private System.Windows.Forms.MenuStrip mainMenu;
+        private System.Windows.Forms.Button csvInBtn;
     }
 }

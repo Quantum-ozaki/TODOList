@@ -124,9 +124,6 @@ namespace データベースお試し用
         /// <param name="e"></param>
         private void registerBtn_Click(object sender, EventArgs e)
         {
-
-            
-
             //オブジェクト指向パラダイム
             MySqlConnection con = new MySqlConnection();
             string conString = ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
@@ -156,13 +153,15 @@ namespace データベースお試し用
 
 
             // INSERT文出す
-            StringBuilder sql = new StringBuilder();
+            //StringBuilder sql = new StringBuilder();
 
             //sql.AppendLine("INSERT INTO content (id, importance, content, category, price, date, remarks) VALUES('" + strCategory + "','" + strContent + "','" + strPrice + "','" + strRemarks + "','" + strData + "')");
             //sql.AppendLine("INSERT INTO content (user_id, importance, content, category_id, price, date, remarks ) VALUES(0,'0','" + strContent + "',(SELECT id FROM category WHERE name = '" + strCategory + "'),'" + strPrice + "','" + dtData + "','" + strRemarks + "')");
+            string sql = string.Format("INSERT INTO content (importance, content, category_id, price, date, remarks, user_id) VALUES ('0', '{0}', (SELECT id FROM category WHERE name = '{1}'), '{2}', '{3}', '{4}', 1)", strContent, strCategory, strPrice, dtData, strRemarks);
 
             // よみこむやつ
-            MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            //MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+            MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.ExecuteNonQuery();
 
 
@@ -340,7 +339,7 @@ namespace データベースお試し用
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void csvBtn_Click(object sender, EventArgs e)
+        private void csvOutBtn_Click(object sender, EventArgs e)
         {
             string save_path = "";
             using (FileDialog dialog = new SaveFileDialog())
@@ -761,6 +760,36 @@ namespace データベースお試し用
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void csvInBtn_Click(object sender, EventArgs e)
+        {
+            string open_path = "";
+            using (FileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Title = "CSVファイルの読み込み";
+                dialog.AddExtension = true;
+                dialog.DefaultExt = "csv";
+
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    open_path = dialog.FileName;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            using (CSVReader reader = new CSVReader(open_path))
+            {
+                reader.ReadHeader();
+                ListViewItem item;
+                while ((item = reader.Read()) != null)
+                {
+                    this.listView2.Items.Add(item);
+                }
+            }
         }
     }
 }
