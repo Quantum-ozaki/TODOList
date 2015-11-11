@@ -228,7 +228,7 @@ namespace データベースお試し用
                 //MessageBox.Show(msg);
 
                 // よみこむやつ
-                MySqlCommand cmd = new MySqlCommand(sql.ToString(), con);
+                MySqlCommand cmd = new MySqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }
 
