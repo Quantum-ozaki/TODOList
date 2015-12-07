@@ -36,13 +36,14 @@ namespace データベースお試し用
         /// TODOリストの1行を読み込む
         /// </summary>
         /// <returns></returns>
-        public ListViewItem Read()
+        public bool Read(out ListViewItem item)
         {
 
             string line = reader.ReadLine();
             if (string.IsNullOrEmpty(line))
             {
-                return null;
+                item = null;
+                return false;
             }
 
             string[] cur_line = line.Split(',');
@@ -51,13 +52,13 @@ namespace データベースお試し用
                 throw new Exception("ヘッダーの数と列の数が一致していません!");
             }
 
-            var item = new ListViewItem();
+            item = new ListViewItem();
             foreach (var line_item in cur_line)
             {
                 item.SubItems.Add(line_item.Substring(1, line_item.Length - 2));
             }
 
-            return item;
+            return true;
         }
 
         /// <summary>

@@ -811,7 +811,7 @@ namespace データベースお試し用
             {
                 reader.ReadHeader();
                 ListViewItem item;
-                while ((item = reader.Read()) != null)
+                while (reader.Read(out item))
                 {
                     this.listView2.Items.Add(item);
                 }
