@@ -26,6 +26,7 @@ namespace データベースお試し用
             main_content_comparer = new MainContentComparer();
 
             dateTimePicker.Format = DateTimePickerFormat.Short;
+            dateTimePicker.Value = DateTime.Now;
 
 
             listView3.View = View.Details;
@@ -55,6 +56,8 @@ namespace データベースお試し用
             // 月 (Month) を取得する
             int month = now.Month;
             ThismonthLbl.Text = month.ToString() + "月の予算";
+
+            InitializeTab();
 
         }
 
@@ -648,7 +651,7 @@ namespace データベースお試し用
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
 
-            if (userateBar.Value ==100)
+            /*if (userateBar.Value ==100)
             {
 
 
@@ -660,7 +663,7 @@ namespace データベースお試し用
                     listView2.SelectedItems[0].BackColor = Color.Red;
                 }
 
-            }
+            }*/
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -760,6 +763,29 @@ namespace データベースお試し用
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void InitializeTab()
+        {
+            using (var con = new MySqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString))
+            {
+                con.Open();
+
+                int user_id = 1;
+                string sql = string.Format("SELECT * FROM goal WHERE id = {0};", user_id);
+
+                var cmd = new MySqlCommand(sql, con);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int price = reader.GetInt32("price");
+                    string comment = reader.GetString("comment");
+
+                    budgetTextBox.Text = price.ToString();
+                    CommenTxt.Text = comment;
+                }
+            }
         }
 
         private void csvInBtn_Click(object sender, EventArgs e)
